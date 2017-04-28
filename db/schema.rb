@@ -10,6 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20170428230928) do
+
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
+    t.string "tweet_nickname", null: false
+    t.string "tweet_screen_name", null: false
+    t.string "tweet_background_image", null: false
+    t.string "tweet_normal_image", null: false
+    t.string "tweet_small_image", null: false
+    t.string "tweet_place", null: false
+    t.integer "tweet_followed_count", null: false
+    t.integer "tweet_following_count", null: false
+    t.text "tweet_self_introduce", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end
