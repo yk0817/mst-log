@@ -24,14 +24,15 @@
       // margin-top: 100px;
       height: 800px;
       .user-wrapper{
-        padding: 10px;
         position: relative;
         background-color: green;
         height: 300px;
         .user-prof {
           background-color: red;
-          margin-top: 30px;
-          
+          margin-left: 0px;
+        }
+        .toot-calendar {
+          background-color: brown;
         }
       }
     }
