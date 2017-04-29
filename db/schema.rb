@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170428230928) do
+ActiveRecord::Schema.define(version: 20170429212826) do
+
+  create_table "toots", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
+    t.bigint "toot_id"
+    t.string "user_id"
+    t.string "toot_display_name"
+    t.string "toot_username"
+    t.text "toot_text"
+    t.string "toot_reblogged"
+    t.string "toot_instance"
+    t.string "toot_link_url"
+    t.date "toot_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
     t.string "tweet_nickname", null: false
