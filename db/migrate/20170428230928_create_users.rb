@@ -12,6 +12,7 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.integer :tweet_following_count,null:false
       t.string :tweet_place,null:false
       t.text :tweet_self_introduce,null:false
+      t.string :website_url,null:false
       t.timestamps
     end
   end
