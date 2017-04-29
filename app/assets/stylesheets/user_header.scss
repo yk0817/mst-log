@@ -1,0 +1,16 @@
+// 変数定義
+// 1,margin 0 auto を変数か出来る？
+
+// 
+// ヘッダー作成
+// 
+.header-top {
+  background-color: #000;
+  .header-wrapper{
+    width: 70%;
+    margin: 0 auto;
+    a {
+      color: #ddd;
+    }
+  }  
+}
