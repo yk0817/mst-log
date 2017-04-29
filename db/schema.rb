@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(version: 20170428230928) do
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
     t.string "tweet_nickname", null: false
+    t.integer "tweet_user_id", null: false
     t.string "tweet_screen_name", null: false
     t.string "tweet_background_image", null: false
     t.string "tweet_normal_image", null: false
