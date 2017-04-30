@@ -13,6 +13,9 @@
 ActiveRecord::Schema.define(version: 20170429222219) do
 
   create_table "crawl_states", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
+    t.integer "user_id"
+    t.string "instance"
+    t.integer "crawl_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -23,10 +26,10 @@ ActiveRecord::Schema.define(version: 20170429222219) do
     t.string "toot_display_name"
     t.string "toot_username"
     t.text "toot_text"
-    t.string "toot_reblogged"
+    t.integer "toot_reblogged", default: 0
     t.string "toot_instance"
-    t.string "toot_link_url"
-    t.date "toot_date"
+    t.text "toot_link_text"
+    t.datetime "toot_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

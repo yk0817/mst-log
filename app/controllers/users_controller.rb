@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[index show]
+  before_action :test_set_user, only: %i[index]
   def index
     
   end
@@ -12,6 +13,10 @@ class UsersController < ApplicationController
   
   def set_user
     # @user = User.find(params[:id])
+  end
+  
+  def test_set_user
+    @user = User.find(1)
   end
   
 end

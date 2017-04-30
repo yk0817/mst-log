@@ -22,7 +22,7 @@ namespace :mast do
       else
         next_url = false
       end
-      return next_url
+      next_url
     end
   end
   
