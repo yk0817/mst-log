@@ -12,14 +12,8 @@
       </section>
       <section class="toot-wrapper">
         tootを書いていく。
-        
-        <ul>
           <!-- タイムライントゥート -->
-          <li class="toot stream"></li>
-          <li class="toot stream"></li>
-          <li class="toot stream"></li>
-          <li class="toot stream"></li>
-        </ul>
+          <%= render :partial => "toot", :collection => @toots %>
       </section>
     </main>
   </div>
