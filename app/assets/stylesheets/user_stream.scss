@@ -20,6 +20,12 @@
           background-color: brown;
         }
       }
+      .toot-wrapper {
+        .toot-content-wrapper{
+          min-width: 0;
+          background-color: yellow;
+        }
+      }
     }
   }
 }

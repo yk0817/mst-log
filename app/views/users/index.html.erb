@@ -3,6 +3,10 @@
     <main class="main-wrapper">
       <section class="user-wrapper grid">
         <div class="user-prof column--heavy">
+          ユーザーツイッターの情報書いていく。ユーザーツイッターの情報書いていく。ユーザーツイッターの情報書いていく。ユーザーツイッターの情報書いていく。ユーザーツイッターの情報書いていく。ユーザーツイッターの情報書いていく。ユーザーツイッターの情報書いていく。
+          ユーザーツイッターの情報書いていく。
+          ユーザーツイッターの情報書いていく。
+          ユーザーツイッターの情報書いていく。
           ユーザーツイッターの情報書いていく。
         </div>
         <div class="toot-calendar">
@@ -10,10 +14,13 @@
         </div>
         
       </section>
-      <section class="toot-wrapper">
-        tootを書いていく。
+      <section class="toot-wrapper grid">
           <!-- タイムライントゥート -->
-          <%= render :partial => "toot", :collection => @toots %>
+          <div class="column--heavy toot-content-wrapper">
+            <%= render :partial => "toot", :collection => @toots %>
+          </div>
+          <div class="">
+          </div>
       </section>
     </main>
   </div>
