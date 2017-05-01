@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :test_set_user, only: %i[index]
   def index
     @toots = Toot.all
+    @date_counts = Toot.
   end
   
   def show
