@@ -24,6 +24,10 @@
         .toot-content-wrapper{
           min-width: 0;
           background-color: yellow;
+          .content{
+            background-color: #f2f2f2;
+            margin-top: 5px;
+          }
         }
       }
     }
