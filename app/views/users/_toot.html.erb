@@ -1,5 +1,6 @@
 <div class="content">
   <%= toot.toot_display_name.html_safe %>
+  <%= time_parse(toot.toot_date) %>
   <%= toot.toot_text.html_safe %>
   <%= link_display(toot.toot_link_text)%>
 </div>
