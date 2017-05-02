@@ -1,5 +1,4 @@
 class Toot < ApplicationRecord
-  belongs_to :user
     
   def toot_week_count(*num)
     

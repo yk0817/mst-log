@@ -7,11 +7,9 @@ class UsersController < ApplicationController
     @date_counts = Toot.new.toot_week_count(1)
   end
   
-  def show
-    
+  def show    
     @date_counts = Toot.new.toot_week_count(1)
-    @toots = @user.toots
-    p User.find(1).toots
+    
   end
   
   private
@@ -21,7 +19,7 @@ class UsersController < ApplicationController
   end
   
   def set_toot
-    @toots = @user.toots
+    @toots = @user.toots.limit(10)
   end
   
   def test_set_user
