@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[index show]
-  before_action :test_set_user, only: %i[index]
+  before_action :set_toot, only: %i[show]
+  
   def index
     # 一旦仮置き本来はユーザーIDが入ってきたらrelation入れて億
     @date_counts = Toot.new.toot_week_count(1)
@@ -8,12 +9,19 @@ class UsersController < ApplicationController
   
   def show
     
+    @date_counts = Toot.new.toot_week_count(1)
+    @toots = @user.toots
+    p User.find(1).toots
   end
   
   private
   
   def set_user
-    # @user = User.find(params[:id])
+    @user = User.find(1)
+  end
+  
+  def set_toot
+    @toots = @user.toots
   end
   
   def test_set_user

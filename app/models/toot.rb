@@ -1,12 +1,12 @@
 class Toot < ApplicationRecord
-  
+  belongs_to :user
     
   def toot_week_count(*num)
     
 sql=<<EOS
   select date(toot_date) as date,count(*) as count from toots where user_id = #{num.first}
   AND  toot_date BETWEEN (CURDATE() - INTERVAL 21 DAY)
-  AND (CURDATE() + INTERVAL 1 DAY) group by date 
+  AND (CURDATE() + INTERVAL 1 DAY) group by date order by date desc
 EOS
   
     ActiveRecord::Base.connection.select_all(sql).to_hash
