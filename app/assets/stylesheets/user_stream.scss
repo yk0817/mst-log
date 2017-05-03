@@ -6,8 +6,6 @@
       margin: 0 auto;
       // ↓仮置き
       width: 70%;
-      // margin-top: 100px;
-      // height: 800px;
       .user-wrapper{
         position: relative;
         background-color: green;
@@ -15,12 +13,25 @@
         .user-prof {
           background-color: red;
           margin-left: 0px;
-          .user-img{
-            width: 200px;
+          padding: 40px;
+          .user-prof-image {
+            width: 100px;
             border-radius: 50%;
+            display: inline-block;
           }
+          .instance-link {
+            display: inline-block;
+          }
+        }
         .toot-calendar {
           background-color: brown;
+      }
+      .tweet-user {
+        .self-intro {
+          color: #fff;
+        }
+        .self-link {
+          color: #fff;
         }
       }
     }

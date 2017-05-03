@@ -12,4 +12,5 @@ module ApplicationHelper
   def link_url_short(link_url)
     return link_to("#{link_url.gsub(/https?:\/\//,"")}",link_url)
   end
+  
 end
