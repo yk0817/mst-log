@@ -15,11 +15,15 @@
         .user-prof {
           background-color: red;
           margin-left: 0px;
-        }
+          .user-img{
+            width: 200px;
+            border-radius: 50%;
+          }
         .toot-calendar {
           background-color: brown;
         }
       }
+    }
       .toot-wrapper {
         .toot-content-wrapper{
           min-width: 0;

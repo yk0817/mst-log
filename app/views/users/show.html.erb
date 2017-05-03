@@ -3,8 +3,7 @@
   <div class="body-wrapper clearfix">
     <main class="main-wrapper">
       <section class="user-wrapper grid">
-        <div class="user-prof column--heavy">
-        </div>
+          <%= render :partial => "prof_content" %>
         <div class="toot-calendar">
           recent tweet
           <%= render :partial => "date_count", :collection => @date_counts %>
