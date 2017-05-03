@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[index show]
+  before_action :set_user, only: %i[index show edit]
   before_action :set_toot, only: %i[show]
 
   
@@ -12,6 +12,10 @@ class UsersController < ApplicationController
     @date_counts = Toot.new.toot_week_count(1)
   end
   
+  def edit
+    #code
+  end
+  
   private
   
   def set_user
@@ -21,7 +25,6 @@ class UsersController < ApplicationController
   def set_toot
     # @toots = @user.toots
     @toots = @user.toots.page(params[:page]).per(ApplicationController::PER)
-
   end
   
 end

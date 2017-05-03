@@ -9,7 +9,7 @@
       .user-wrapper{
         position: relative;
         background-color: green;
-        height: 300px;
+        height: auto;
         .user-prof {
           background-color: red;
           margin-left: 0px;
@@ -21,6 +21,20 @@
           }
           .instance-link {
             display: inline-block;
+            vertical-align: 120%;
+            padding-left: 20px;
+            a {
+              text-decoration: none;
+            }
+            strong {
+              color: #fff;
+            }
+            .mstdn-link,.pawoo-link,.friends-link {
+              color: #fff;
+              text-decoration: none;
+              padding: 5px;
+              background: rgba(0, 0, 0, 0.8);
+            }
           }
         }
         .toot-calendar {
@@ -29,9 +43,11 @@
       .tweet-user {
         .self-intro {
           color: #fff;
+          list-style: none;
         }
         .self-link {
           color: #fff;
+          list-style: none;
         }
       }
     }
