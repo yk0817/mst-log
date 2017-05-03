@@ -4,11 +4,6 @@
     <main class="main-wrapper">
       <section class="user-wrapper grid">
         <div class="user-prof column--heavy">
-          ユーザーツイッターの情報書いていく。ユーザーツイッターの情報書いていく。ユーザーツイッターの情報書いていく。ユーザーツイッターの情報書いていく。ユーザーツイッターの情報書いていく。ユーザーツイッターの情報書いていく。ユーザーツイッターの情報書いていく。
-          ユーザーツイッターの情報書いていく。
-          ユーザーツイッターの情報書いていく。
-          ユーザーツイッターの情報書いていく。
-          ユーザーツイッターの情報書いていく。
         </div>
         <div class="toot-calendar">
           recent tweet
@@ -26,3 +21,10 @@
   </div>
 </div> 
 <%= paginate @toots %>
+<style media="screen">
+  <% unless @user.tweet_background_image.nil? %>
+    .user-prof{ background-image: url(<%= @user.tweet_background_image.gsub(/\/1500x500/,"/ipad") %>); }
+  <% else %>
+    .user-prof{ background-image: linear-gradient(315deg, rgb(246, 243, 244) 0%, rgb(162, 119, 110) 100%);}
+  <% end %>
+</style>

@@ -18,7 +18,7 @@ namespace :tweet_prof  do
     User.find_each(:batch_size => 1) do |user|
       begin
         account = client.user(user.tweet_screen_name)
-        pp account
+        # pp account
         user_info_hash =  account.to_hash
         user.tweet_self_introduce = user_info_hash[:description] #自己紹介
         user.tweet_screen_name = user_info_hash[:screen_name] 
