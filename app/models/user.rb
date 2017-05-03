@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :toots
+  has_many :crawl_states
   def self.find_or_create_user_auth_hash(auth_hash)    
     # アカウントはツイッターのみを想定
     # 以下、auth→返ってきたハッシュをDB用に整形
