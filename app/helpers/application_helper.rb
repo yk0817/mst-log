@@ -8,4 +8,8 @@ module ApplicationHelper
       input_date.strftime("%m月%d日")
     end
   end
+  
+  def link_url_short(link_url)
+    return link_to("#{link_url.gsub(/https?:\/\//,"")}",link_url)
+  end
 end

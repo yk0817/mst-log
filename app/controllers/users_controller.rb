@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[index show]
   before_action :set_toot, only: %i[show]
-  PER = 10
-  PER.freeze
+
   
   def index
     # 一旦仮置き本来はユーザーIDが入ってきたらrelation入れて億
@@ -21,7 +20,7 @@ class UsersController < ApplicationController
   
   def set_toot
     # @toots = @user.toots
-    @toots = @user.toots.page(params[:page]).per(PER)
+    @toots = @user.toots.page(params[:page]).per(ApplicationController::PER)
 
   end
   
