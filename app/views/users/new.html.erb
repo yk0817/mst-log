@@ -1,0 +1,10 @@
+<div class="new-container">
+  <div class="new-wrapper">
+    <%= form_for @crawl_state,:url => { :controller => :users, :action => :create } do |f| %>
+      <div>test</div>
+      <%= f.text_field :crawl_status %>
+      <%= f.text_field :crawl_status %>
+      <%= f.submit "test" %>
+    <% end %>
+  </div>
+</div>

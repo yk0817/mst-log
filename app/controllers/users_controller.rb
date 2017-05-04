@@ -17,14 +17,22 @@ class UsersController < ApplicationController
     
   end
   
+  def new
+    @crawl_state = CrawlState.new
+  end
+  
+  def create
+    #メモ 新規登録、インスタンス追加でアクションを変更させておく。
+  end
+  
   private
   
   def set_user
-    @user = User.find(params[:id])
+    @user = User.find(params[:id]) 
   end
+
   
   def set_toot
-    # @toots = @user.toots
     @toots = @user.toots.page(params[:page]).per(ApplicationController::PER)
   end
   
