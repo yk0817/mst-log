@@ -4,7 +4,7 @@
       <a>25% ロゴマーク</a>
       <a>25% このサイトについて</a>
       <%= link_to("25%インスタンス追加") %>
-      <%= link_to("ログイン",'/auth/twitter') %>
+      <%= link_to_if(session[:user_id].nil?,"ログアウト",'/auth/twitter') || link_to_if("ログイン",'/auth/twitter') %>
     </div>
   </div>
 </header>
