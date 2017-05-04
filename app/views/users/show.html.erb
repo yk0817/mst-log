@@ -3,16 +3,16 @@
   <div class="body-wrapper clearfix">
     <main class="main-wrapper">
       <section class="user-wrapper grid">
-          <%= render :partial => "prof_content" %>
+          <%= render :partial => "partial/prof_content" %>
         <div class="toot-calendar">
           recent tweet
-          <%= render :partial => "date_count", :collection => @date_counts %>
+          <%= render :partial => "partial/date_count", :collection => @date_counts %>
         </div>
       </section>
       <section class="toot-wrapper grid">
           <!-- タイムライントゥート -->
         <div class="column--heavy toot-content-wrapper">
-          <%= render :partial => "toot", :collection => @toots %>
+          <%= render :partial => "partial/toot", :collection => @toots %>
         </div>
       </section>
     </main>

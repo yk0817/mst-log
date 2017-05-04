@@ -1,5 +1,4 @@
 class Toot < ApplicationRecord
-    
   def toot_week_count(*num)
     
 sql=<<EOS
