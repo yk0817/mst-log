@@ -18,7 +18,9 @@ class UsersController < ApplicationController
   end
   
   def new
-    @crawl_state = current_user.crawl_states.build
+    @crawl_state = (1..3).map do
+      current_user.crawl_states.build
+    end
   end
   
   def create #user create 

@@ -1,9 +1,10 @@
 <div class="new-container">
   <div class="new-wrapper">
     <%= form_for @crawl_state,:url => instance_user_path("#{current_user.id}") do |f| %>
-      <div>test</div>
-      <%= f.text_field :instance %>
-      <%= f.text_field :instance %>
+      <%= f.hidden_field :instance, :name => "user_id",:value => current_user.id %>  
+      <%= f.text_field :instance,:name => "mstdn.jp" %>
+      <%= f.text_field :instance,:name => "Pawoo" %>
+      <%= f.text_field :instance,:name => "friends.nico" %>
       <%= f.submit "test" %>
     <% end %>
   </div>
