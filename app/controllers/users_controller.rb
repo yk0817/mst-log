@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   end
   
   def instance
-    
+    redirect_to(user_path)
   end
   
   
