@@ -8,6 +8,8 @@ class SessionsController < ApplicationController
   end
   
   def destroy
-    
+    reset_session
+    redirect_to(users_path)
   end
+  
 end

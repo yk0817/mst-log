@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @user = User.find(1)
   end
   
-  def show    
+  def show
     @date_counts = Toot.new.toot_week_count(1)
   end
   
@@ -23,7 +23,12 @@ class UsersController < ApplicationController
   
   def create
     #メモ 新規登録、インスタンス追加でアクションを変更させておく。
+    user = User.find_or_create_user_auth_hash(request.env['omniauth.auth'])
+    session[:user_id] = user.id
+    redirect_to(inde_path)
   end
+  
+
   
   private
   
