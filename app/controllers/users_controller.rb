@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit]
   before_action :set_toot, only: %i[show]
-
   
   def index
     # 一旦仮置き本来はユーザーIDが入ってきたらrelation入れて億
@@ -18,6 +17,7 @@ class UsersController < ApplicationController
   end
   
   def new
+    @instances = ["mstdn.jp","friends.nico","Pawoo"]
     @crawl_state = (1..3).map do
       current_user.crawl_states.build
     end

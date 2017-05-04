@@ -1,11 +1,18 @@
 <div class="new-container">
-  <div class="new-wrapper">
-    <%= form_for @crawl_state,:url => instance_user_path("#{current_user.id}") do |f| %>
+  <div class="new-wrapper wrapper-small">
+    <h1 class="top">インスタンスのアカウント名を入力して下さい</h1>
+    <%= form_for @crawl_state,:url => instance_user_path("#{current_user.id}",:class =>"form-body") do |f| %>
       <%= f.hidden_field :instance, :name => "user_id",:value => current_user.id %>  
-      <%= f.text_field :instance,:name => "mstdn.jp" %>
-      <%= f.text_field :instance,:name => "Pawoo" %>
-      <%= f.text_field :instance,:name => "friends.nico" %>
-      <%= f.submit "test" %>
-    <% end %>
+      <% @instances.each do |instance| %>
+        <h2><%= instance %></h2>
+        <%= f.label :instance,:class => "textfield" do %>
+          <%= f.text_field :instance,:name => instance,:class => "textfield__label"%>
+            <span class="textfield__label"><%= instance%>のユーザー名</span>
+        <% end %>
+      <% end %>
+      <div class="submit">
+        <%= f.submit "更新",:class=>"btn--secondary" %>
+      </div>
+      <% end %>
   </div>
 </div>
