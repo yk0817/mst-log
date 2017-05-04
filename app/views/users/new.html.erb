@@ -1,6 +1,6 @@
 <div class="new-container">
   <div class="new-wrapper">
-    <%= form_for @crawl_state,:url => { :controller => :users, :action => :create } do |f| %>
+    <%= form_for @crawl_state,:url => instance_user_path("#{current_user.id}") do |f| %>
       <div>test</div>
       <%= f.text_field :instance %>
       <%= f.text_field :instance %>

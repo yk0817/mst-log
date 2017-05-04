@@ -18,17 +18,19 @@ class UsersController < ApplicationController
   end
   
   def new
-    @crawl_state = CrawlState.new
+    @crawl_state = current_user.crawl_states.build
   end
   
-  def create
-    #メモ 新規登録、インスタンス追加でアクションを変更させておく。
+  def create #user create 
     user = User.find_or_create_user_auth_hash(request.env['omniauth.auth'])
     session[:user_id] = user.id
-    redirect_to(inde_path)
+    redirect_to(user_path)
   end
   
-
+  def instance
+    
+  end
+  
   
   private
   
