@@ -1,10 +1,11 @@
 <div class="new-container">
   <div class="new-wrapper wrapper-small">
     <h1 class="top">インスタンスのアカウント名を入力して下さい</h1>
-    <%= form_for @crawl_state,:url => instance_user_path("#{current_user.id}",:class =>"form-body") do |f| %>
+    <%= form_for @crawl_state,:url => instance_user_path("#{current_user.id}") do |f| %>
       <%= f.hidden_field :instance, :name => "user_id",:value => current_user.id %>  
       <% @instances.each do |instance| %>
-        <h2><%= instance %></h2>
+        <%= image_tag("#{instance}.png",:class => "instance-image") %>
+        <h2 class="instance-name"><%= instance %></h2>
         <%= f.label :instance,:class => "textfield" do %>
           <%= f.text_field :instance,:name => instance,:class => "textfield__label"%>
             <span class="textfield__label"><%= instance%>のユーザー名</span>

@@ -1,15 +1,18 @@
 .new-wrapper {
   width: 60%;
   margin: 0 auto;
-  // .form-body {
-  //   h2 {
-  //     .image-instance {
-  //       width: 50px;
-  //       height: 50px;
-  //       display: inline-block;
-  //     }
-  //   }
-  // }
+  form {
+    .instance-name {
+      display: inline-block;
+    }
+    .instance-image {
+      width: 100px;
+      height: 100px;
+      display: inline-block;
+      vertical-align: -30px;
+      padding-right: 5px;
+    }
+  }
   .submit{
     text-align: center;
   }
