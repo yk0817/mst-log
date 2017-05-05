@@ -9,7 +9,12 @@
       <% else %>
         <%= link_to("ログイン",'/auth/twitter') %>
       <% end %>
+      <div>
+        <% if current_user %>
+          <%= image_tag(current_user.tweet_small_image,:class=>"profile-photo") %>
+          <span class="twitter-nickname"><%= current_user.tweet_nickname %></span>
+        <% end %>
+      </div>
     </div>
-    <img src="" alt="" />
   </div>
 </header>

@@ -1,8 +1,10 @@
 <div class="content">
-  <i class="fa fa-twitter" aria-hidden="true"></i>
-  <%= toot.toot_display_name.html_safe %>
-  <%= time_parse(toot.toot_date) %>
-  <%= boosted?(toot.toot_reblogged) %>
-  <%= toot.toot_text.html_safe %>
-  <%= link_display(toot.toot_link_text)%>
+  <%= image_tag("friends.nico.png",:class => "instance-image") %>
+  <div class="content-type">
+    <%= toot.toot_display_name.html_safe %>
+    <%= time_parse(toot.toot_date) %>
+    <%= boosted?(toot.toot_reblogged) %>
+    <%= toot.toot_text.html_safe %>
+    <%= link_display(toot.toot_link_text)%>
+  </div>
 </div>

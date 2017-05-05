@@ -59,6 +59,14 @@
           .content{
             background-color: #f2f2f2;
             margin-top: 5px;
+            .instance-image {
+              width: 5%;
+              display: inline-block;
+            }
+            .content-type{
+              width: 93%;
+              display: inline-block;
+            }
             .invisible{
               display: none;
             }
