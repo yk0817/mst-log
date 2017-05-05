@@ -1,8 +1,10 @@
 <div class="content">
-  <%= image_tag("friends.nico.png",:class => "instance-image") %>
   <div class="content-type">
-    <%= toot.toot_display_name.html_safe %>
-    <%= time_parse(toot.toot_date) %>
+    <h4 class ="display-name-content">
+      <%= image_tag("friends.nico.png",:class => "instance-image") %>
+      <%= toot.toot_display_name.html_safe %>
+      <span class="display-calendar"><%= time_parse(toot.toot_date) %></span>
+    </h4>
     <%= boosted?(toot.toot_reblogged) %>
     <%= toot.toot_text.html_safe %>
     <%= link_display(toot.toot_link_text)%>

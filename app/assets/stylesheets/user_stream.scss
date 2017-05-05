@@ -66,6 +66,13 @@
             .content-type{
               width: 93%;
               display: inline-block;
+              .display-name-content{
+                .display-calendar{
+                  padding-left: 1em;
+                  font-size:  0.6em;
+                  opacity: 0.9;
+                }
+              }
             }
             .invisible{
               display: none;
