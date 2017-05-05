@@ -11,9 +11,8 @@
         background-color: green;
         height: auto;
         .user-prof {
-          background-color: red;
           margin-left: 0px;
-          padding: 40px;
+          padding-top: 20px;
           .user-prof-image {
             width: 100px;
             border-radius: 50%;
@@ -38,7 +37,21 @@
           }
         }
         .toot-calendar {
-          background-color: brown;
+          // background-color: brown;
+          border-bottom: 1px solid #eee
+          .toot-calendar-title {
+            text-align: center;
+            padding: 0.7em;
+          }
+          .date-count{
+            padding-top: 0.2em;
+            padding-bottom: 0.2em;
+            border-bottom: 1px solid #eee;
+            .recent-date{
+              text-align: center;
+            }
+            
+          }
       }
       .tweet-user {
         .self-intro {
@@ -54,6 +67,7 @@
       .toot-wrapper {
         .toot-content-wrapper{
           min-width: 0;
+          margin: 0;
           background-color: yellow;
           margin-bottom: 30px;
           .content{
@@ -78,6 +92,10 @@
               display: none;
             }
           }
+        }
+        .recent-user {
+          background-color: green;
+          height: 400px;
         }
       }
     }

@@ -5,7 +5,7 @@
       <section class="user-wrapper grid">
           <%= render :partial => "partial/prof_content" %>
         <div class="toot-calendar">
-          recent tweet
+          <h4 class="toot-calendar-title">recent toot count</h4>
           <%= render :partial => "partial/date_count", :collection => @date_counts %>
         </div>
       </section>
@@ -13,6 +13,9 @@
           <!-- タイムライントゥート -->
         <div class="column--heavy toot-content-wrapper">
           <%= render :partial => "partial/toot", :collection => @toots %>
+        </div>
+        <div class="recent-user">
+          最近追加されたユーザーのアカウントを表示
         </div>
       </section>
     </main>
