@@ -17,7 +17,7 @@
         <% if current_user %>
           <%= link_to(user_path(current_user.id)) do %>
             <%= image_tag(current_user.tweet_small_image,:class=>"profile-photo header-common") %>
-            <span class="twitter-nickname fw-bold"><%= current_user.tweet_nickname %></span>
+            <span class="twitter-nickname fw-bold">マイページ</span>
           <% end %>
         <% end %>
       </div>
