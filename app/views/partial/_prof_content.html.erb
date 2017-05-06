@@ -5,6 +5,7 @@
       <strong><%= @user.tweet_nickname %></strong>
       <strong><%= "@#{@user.tweet_screen_name}" %></strong>
     <% end %>
+      <p class="toot-count"><strong><%=   @toot_counts %>トゥート</strong></p>
   </div>
   <div class="prof-instance-link">
     <%= instance_link(@user,"mstdn.jp") %>

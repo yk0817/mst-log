@@ -19,6 +19,7 @@ body {
         height: auto;
         .user-prof {
           margin-left: 0px;
+          margin-top: 1em;
           padding-top: 20px;
           @include base-border-radius;
           .user-prof-image {
@@ -60,6 +61,11 @@ body {
             }
             strong {
               color: #fff;
+            }
+            .toot-count{
+              color: #fff;
+              text-align: center;
+              padding-top: 0.2em;
             }
             .mstdn-link,.pawoo-link,.friends-link {
               color: #fff;
