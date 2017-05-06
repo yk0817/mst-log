@@ -5,9 +5,9 @@
       <strong><%= @user.tweet_nickname %></strong>
       <strong><%= "@#{@user.tweet_screen_name}" %></strong>
     <% end %>
-    <%= link_to_if(@user.website_url,"mstdn.jp",@user.website_url,:class => "mstdn-link")%>
-    <%= link_to_if(@user.website_url,"pawoo",@user.website_url,:class => "pawoo-link")%>
-    <%= link_to_if(@user.website_url,"nico.friends",@user.website_url,:class => "friends-link")%>
+    <%= instance_link(@user,"mstdn.jp")%>
+    <%= instance_link(@user,"friends.nico")%>
+    <%= instance_link(@user,"pawoo.net")%>
   </div>
     <ul class="tweet-user">
       <li class="self-intro"><%= @user.tweet_self_introduce %></li>

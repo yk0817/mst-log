@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   end
   
   def show
-    @date_counts = Toot.new.toot_week_count(1)
+    @date_counts = Toot.new.toot_week_count(params[:id])
     @recent_users = User.order('created_at DESC').limit(5)
   end
   
