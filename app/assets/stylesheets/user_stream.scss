@@ -1,6 +1,7 @@
 // body {
 //   background:#C0DEED url(http://abs.twimg.com/images/themes/theme1/bg.png) no-repeat fixed 0 0 ;
 // }
+@import "common";
 body {
   background: url(5.jpg)  fixed 0 0 ;
 }
@@ -43,12 +44,11 @@ body {
           }
         }
         .toot-calendar {
-          // background-color: brown;
-          border: 1px solid #eee;
-          border-bottom: 1px solid #eee;
+          border: $border;
+          border-bottom: $border;
           .toot-calendar-title {
             text-align: center;
-            border-bottom: 1px solid #ccc;
+            border-bottom: $border;
             padding: 0.7em;
           }
           .date-count{
