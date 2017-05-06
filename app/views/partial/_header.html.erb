@@ -3,7 +3,7 @@
     <div class="grid grid-wrapper ">      
       <a>25% ロゴマーク</a>
       <a>25% このサイトについて</a>
-      <%= link_to("25%インスタンス追加") %>
+      <%= link_to("インスタンス編集",new_user_path) %>
       <% if logged_in? %>
         <%= link_to("ログアウト",logout_path)%>
       <% else %>

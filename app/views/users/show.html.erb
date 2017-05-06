@@ -15,7 +15,8 @@
           <%= render :partial => "partial/toot", :collection => @toots %>
         </div>
         <div class="recent-user">
-          最近追加されたユーザーのアカウントを表示
+          <h4 class="recent-regist-user ta-center">登録ユーザー</h4>
+          <%= render :partial => "partial/recent_user", :collection => @recent_users %>
         </div>
       </section>
     </main>

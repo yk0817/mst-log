@@ -38,9 +38,11 @@
         }
         .toot-calendar {
           // background-color: brown;
-          border-bottom: 1px solid #eee
+          border: 1px solid #eee;
+          border-bottom: 1px solid #eee;
           .toot-calendar-title {
             text-align: center;
+            border-bottom: 1px solid #eee;
             padding: 0.7em;
           }
           .date-count{
@@ -96,6 +98,11 @@
         .recent-user {
           background-color: green;
           height: 400px;
+          .recent-user-name {
+            .user-photo {
+              display: inline-block;
+            }
+          }
         }
       }
     }

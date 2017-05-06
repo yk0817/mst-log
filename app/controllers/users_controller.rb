@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   
   def show
     @date_counts = Toot.new.toot_week_count(1)
+    @recent_users = User.order('created_at DESC').limit(5)
   end
   
   def edit
@@ -18,9 +19,7 @@ class UsersController < ApplicationController
   
   def new
     @instances = ["mstdn.jp","friends.nico","Pawoo"]
-    @crawl_state = (1..3).map do
-      current_user.crawl_states.build
-    end
+    @crawl_state = current_user.crawl_states.build
   end
   
   def create #user create 
