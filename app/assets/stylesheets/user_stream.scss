@@ -20,10 +20,25 @@ body {
         .user-prof {
           margin-left: 0px;
           padding-top: 20px;
+          @include base-border-radius;
           .user-prof-image {
             width: 100px;
             border-radius: 50%;
             display: inline-block;
+          }
+          .prof-instance-link {
+            text-align: center;
+            a{
+              color: #fff;
+              text-decoration: none;
+              padding-right: 10px;
+            }
+            a:visited {
+              color: #fff;
+            }
+            a:hover{
+              
+            }
           }
           .instance-link {
             display: inline-block;

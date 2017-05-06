@@ -10,6 +10,11 @@
     margin: 0 auto;
     a {
       color: #ddd;
+      text-decoration: none;
+    }
+    .header-link {
+      line-height: 60px;
+      text-align: center;
     }
     .profile-photo{
       width: 50px;
@@ -22,6 +27,16 @@
     .twitter-nickname{
       vertical-align: 15px;
       color: #fff;
+    }
+    .logo-wrapper {
+      width: 85px;
+      display: inline-table;
+      .header-logo {
+        height: 60px;
+        padding: 3px;
+        border-radius: 15px;
+        width: 60px;
+      }
     }
   }
 }
