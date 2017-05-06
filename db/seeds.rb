@@ -14,4 +14,28 @@
 #   User.create(hash)
 # end
 
-# トゥート例入力
+# アカウント入力
+hash = {}
+hash[:id] = 1
+hash[:instance_user_name] = "jesushill"
+hash[:instance] = "mstdn.jp"
+hash[:crawl_status] = 0
+hash[:user_id] = 1
+
+hash2 = {}
+hash2[:id] = 2
+hash2[:instance_user_name] = "Ken"
+hash2[:instance] = "friends.nico"
+hash2[:crawl_status] = 0
+hash2[:user_id] = 1
+# 
+hash3 = {}
+hash3[:id] = 3
+hash3[:instance_user_name] = "ken_yama"
+hash3[:instance] = "pawoo"
+hash3[:crawl_status] = 0
+hash3[:user_id] = 1
+
+# CrawlState.find_or_create_by(hash)
+CrawlState.find_or_create_by(hash2)
+CrawlState.find_or_create_by(hash3)
