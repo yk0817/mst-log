@@ -10,4 +10,12 @@ module UsersHelper
   def date_comprise
   end
   
+  def have_instance_account?(instance,current_user)
+    if CrawlState.where(:instance => instance ,:user_id => current_user.id)
+      CrawlState.find_by(:instance => instance,:user_id => current_user.id).instance_user_name
+    else
+      ""
+    end
+  end
+  
 end

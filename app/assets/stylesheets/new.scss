@@ -1,3 +1,4 @@
+@import "common";
 .new-wrapper {
   width: 60%;
   margin: 0 auto;
@@ -15,6 +16,9 @@
   }
   .submit{
     text-align: center;
+    .submit-button {
+      @include base-border-radius;
+    }
   }
 }
 

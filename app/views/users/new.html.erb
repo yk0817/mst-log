@@ -7,12 +7,12 @@
         <%= image_tag("#{instance}.png",:class => "instance-image") %>
         <h2 class="instance-name"><%= instance %></h2>
         <%= f.label :instance,:class => "textfield" do %>
-          <%= f.text_field :instance,:name => instance,:class => "textfield__label"%>
-            <span class="textfield__label"><%= instance%>のユーザー名</span>
+          <%= f.text_field :instance,:name => instance,:class => "textfield__label",:value => "現在の登録アカウント:#{have_instance_account?(instance,current_user)}" %>
+          <span class="textfield__label"><%= instance%>のユーザー名</span>
         <% end %>
       <% end %>
       <div class="submit">
-        <%= f.submit "更新",:class=>"btn--secondary" %>
+        <%= f.submit "更新",:class=>"btn--secondary submit-button" %>
       </div>
       <% end %>
   </div>
