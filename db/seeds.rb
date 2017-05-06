@@ -36,6 +36,6 @@ hash3[:instance] = "pawoo"
 hash3[:crawl_status] = 0
 hash3[:user_id] = 1
 
-# CrawlState.find_or_create_by(hash)
+CrawlState.find_or_create_by(hash)
 CrawlState.find_or_create_by(hash2)
 CrawlState.find_or_create_by(hash3)
