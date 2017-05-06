@@ -1,0 +1,9 @@
+@import "common";
+@media screen and (max-width: 768px){
+  .toot-calendar {
+    display: none;
+  }
+  .recent-user {
+    display: none;
+  }
+}
