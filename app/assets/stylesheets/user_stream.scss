@@ -1,3 +1,10 @@
+// body {
+//   background:#C0DEED url(http://abs.twimg.com/images/themes/theme1/bg.png) no-repeat fixed 0 0 ;
+// }
+body {
+  background: url(5.jpg)  fixed 0 0 ;
+}
+
 // ユーザーindexのCSS
 .index-container {
   .body-wrapper{
@@ -8,7 +15,6 @@
       width: 70%;
       .user-wrapper{
         position: relative;
-        background-color: green;
         height: auto;
         .user-prof {
           margin-left: 0px;
@@ -42,13 +48,13 @@
           border-bottom: 1px solid #eee;
           .toot-calendar-title {
             text-align: center;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #ccc;
             padding: 0.7em;
           }
           .date-count{
             padding-top: 0.2em;
             padding-bottom: 0.2em;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #ccc;
             .recent-date{
               text-align: center;
             }
@@ -99,8 +105,16 @@
           background-color: green;
           height: 400px;
           .recent-user-name {
+            // text-align: center;
+            padding-left: 15px;
             .user-photo {
               display: inline-block;
+            }
+            .user-link {
+              vertical-align: 15px;
+              padding-left: 10px;
+              text-decoration: none;
+              color:  #3c3c3d;
             }
           }
         }
