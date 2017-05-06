@@ -5,6 +5,8 @@
 // 
 .header-top {
   background-color: #000;
+  height: 70px;
+  padding-top: 3px;
   .header-wrapper{
     width: 70%;
     margin: 0 auto;
@@ -14,7 +16,7 @@
     }
     .header-link {
       line-height: 60px;
-      text-align: center;
+      text-align: center;      
     }
     .profile-photo{
       width: 50px;
