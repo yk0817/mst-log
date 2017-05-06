@@ -1,2 +1,9 @@
 // っ共通的な灰入れ職
-$border: 1px solid #8d8d8d;
+$border: 1px solid #ccc;
+$base_background: #fff;
+$base-border-radius: 5px;
+
+@mixin base-border-radius {
+  border: $border;
+  border-radius: $base-border-radius;
+}

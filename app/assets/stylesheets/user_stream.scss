@@ -44,8 +44,11 @@ body {
           }
         }
         .toot-calendar {
-          border: $border;
           border-bottom: $border;
+          margin: 1em;
+          background-color: $base-background;
+          @include base-border-radius;
+          
           .toot-calendar-title {
             text-align: center;
             border-bottom: $border;
@@ -76,19 +79,26 @@ body {
         .toot-content-wrapper{
           min-width: 0;
           margin: 0;
-          background-color: yellow;
+          background-color: $base_background;
           margin-bottom: 30px;
           .content{
             background-color: #f2f2f2;
             margin-top: 5px;
+            padding-left: 10px;
+            @include base-border-radius;
+            border: $border;
+            margin-bottom: 20px;
             .instance-image {
               width: 5%;
               display: inline-block;
             }
             .content-type{
-              width: 93%;
+              width: 95%;
               display: inline-block;
               .display-name-content{
+                padding-right: 1em;
+                padding-top: 0.5em;
+                padding-bottom: 0.5em;
                 .display-calendar{
                   padding-left: 1em;
                   font-size:  0.6em;
@@ -96,16 +106,25 @@ body {
                 }
               }
             }
+            .date-display{
+              padding-bottom: 0.3em;
+            }
             .invisible{
               display: none;
             }
           }
         }
         .recent-user {
-          background-color: green;
+          background-color: $base-background;
           height: 400px;
+          margin: 1em;
+          @include base-border-radius;
+          .recent-regist-user {
+            padding: 20px;
+          }
           .recent-user-name {
-            // text-align: center;
+            border-top: $border;
+            padding-top: 5px;
             padding-left: 15px;
             .user-photo {
               display: inline-block;
