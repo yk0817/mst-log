@@ -1,14 +1,16 @@
+@import "common";
 .home-wrapper {
   .home-body-wrapper {
-    width: 60%;
+    width: 75%;
     margin: 0 auto;
     background-color: #fff;
     padding: 30px;
     .home-to-login {
       background-color: rgba(51,51,51,0.25);
+      @include base-border-radius;
       .home-title {
+        padding-top: 20px;
         text-align: center;
-        color: #fff;
         .home-mstdn-logo{
           width: 60px;
           display: inline-block;
@@ -17,8 +19,37 @@
         }
       }
       .login-box {
-        width: 70%;
+        width: 30%;
+        padding: 20px;
+        background-color: yellow;
+        @include base-border-radius;
         margin: 0 auto;
+        margin-bottom: 25px;
+        i {
+          color: #1da1f2;
+        }
+      }
+    }
+    .example-wrapper {
+      background-color: #efeff0;
+      padding-bottom: 30px;
+      @include base-border-radius;
+      .example-body-wrapper{
+        .example-picture{
+          height: 200px;
+          padding-top: 20px;
+        }
+        
+        .picture1,.picture2{
+          width: 300px;
+          object-fit: contain;
+          margin: 0 auto;
+        }
+        .picture3{
+          width: 320px;
+          object-fit: contain;
+          margin: 0 auto;
+        }
       }
     }
   }
