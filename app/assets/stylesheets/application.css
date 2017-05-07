@@ -2,11 +2,9 @@
 /*
  *= require_tree .
  *= require cutestrap
- *= require 'font-awesome'
  *= require_self
  */
 
- @import 'font-awesome';
 
 /*定数一覧*/
 

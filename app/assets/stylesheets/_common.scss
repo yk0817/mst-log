@@ -2,6 +2,8 @@
 $border: 1px solid #ccc;
 $base_background: #fff;
 $base-border-radius: 5px;
+@import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
+
 
 @mixin base-border-radius {
   border: $border;
