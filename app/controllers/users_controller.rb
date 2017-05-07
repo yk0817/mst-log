@@ -33,6 +33,9 @@ class UsersController < ApplicationController
   end
   
   def instance
+    p params
+      
+    exit
     redirect_to(user_path)
   end
   
@@ -42,11 +45,11 @@ class UsersController < ApplicationController
   def set_user
     @user = User.find(params[:id]) 
   end
-
   
   def set_toot
     @toots = @user.toots.page(params[:page]).per(ApplicationController::PER)
   end
+  
   
 end
   
