@@ -6,12 +6,15 @@
           <%= image_tag("logo2.jpg",:class => "header-logo") %>
         </div>
       <% end %>
-      <%= link_to('マストログについて',home_path,:class=>"header-link fw-bold about-site") %>
+      <%= link_to('マストログ？',home_path,:class=>"header-link fw-bold about-site") %>
       <%= link_to("インスタンス登録",new_user_path,:class => "header-link fw-bold") %>
       <% if logged_in? %>
         <%= link_to("ログアウト",logout_path,:class => "header-link fw-bold")%>
       <% else %>
-        <%= link_to("ログイン",'/auth/twitter',:class => "header-link fw-bold") %>
+      <p>
+        <i class="fa fa-twitter fa-2"></i>
+        <%= link_to("ログイン",'/auth/twitter',:class => "header-link fw-bold")%>
+      </p>
       <% end %>
       <div class="profile-photo-wrapper">
         <% if current_user %>
