@@ -7,7 +7,7 @@
         </div>
       <% end %>
       <%= link_to('マストログ？',home_path,:class=>"header-link fw-bold about-site") %>
-      <%= link_to("インスタンス登録",new_user_path,:class => "header-link fw-bold") %>
+      <%= link_to("アカウント登録",new_user_path,:class => "header-link fw-bold") %>
       <% if logged_in? %>
         <%= link_to("ログアウト",logout_path,:class => "header-link fw-bold")%>
       <% else %>
