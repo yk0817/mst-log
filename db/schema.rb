@@ -10,19 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170506020359) do
+ActiveRecord::Schema.define(version: 20170508132839) do
 
   create_table "crawl_states", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
     t.integer "user_id"
     t.string "instance"
     t.integer "crawl_status", default: 0, null: false
+    t.string "instance_user_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "instance_user_name"
+    t.integer "update_crawl_status"
   end
 
   create_table "toots", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
-    t.bigint "toot_id"
+    t.string "toot_id"
     t.integer "user_id"
     t.string "toot_display_name"
     t.string "toot_username"
@@ -33,6 +34,7 @@ ActiveRecord::Schema.define(version: 20170506020359) do
     t.datetime "toot_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "crawl_instance_id"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
