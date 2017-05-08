@@ -35,18 +35,27 @@ class UsersController < ApplicationController
   def instance
     
     # あとでリファ
+    # CrawlState.toots
+    # CrawlState.find(1).toots
     
     hash = {}
     hash[:user_id] = account_params["user_id"].to_i
     hash[:instance] = "mstdn.jp"
     hash[:instance_user_name] = account_params["mstdn.jp"]
-    CrawlState.find_or_create_by(hash) unless hash[:instance_user_name].empty?
-    hash[:instance] = "friends.nico"
-    hash[:instance_user_name] = account_params["friends.nico"]
-    CrawlState.find_or_create_by(hash)  unless hash[:instance_user_name].empty?
-    hash[:instance] = "pawoo.net"
-    hash[:instance_user_name] = account_params["pawoo.net"]
-    CrawlState.find_or_create_by(hash) unless hash[:instance_user_name].empty?
+    
+    if CrawlState.where(hash).count == 0
+      hash[:user_id]
+      CrawlState.where(:instance => hash[:instance],:user_id => hash[:user_id]).all.destroy_all
+      CrawlState.create(hash)
+    end
+    
+    # CrawlState.find_or_create_by(hash) 
+    # hash[:instance] = "friends.nico"
+    # hash[:instance_user_name] = account_params["friends.nico"]
+    # CrawlState.find_or_create_by(hash)  unless hash[:instance_user_name].empty?
+    # hash[:instance] = "pawoo.net"
+    # hash[:instance_user_name] = account_params["pawoo.net"]
+    # CrawlState.find_or_create_by(hash) unless hash[:instance_user_name].empty?
     redirect_to(user_path)
     
   end
