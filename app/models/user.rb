@@ -7,7 +7,7 @@ class User < ApplicationRecord
   def self.find_or_create_user_auth_hash(auth_hash)    
     # アカウントはツイッターのみを想定
     # 以下、auth→返ってきたハッシュをDB用に整形
-    pp auth_hash
+    # pp auth_hash
     tweet_nickname = auth_hash[:info][:nickname]
     tweet_user_id = auth_hash[:uid]
     tweet_screen_name = auth_hash[:info][:name]

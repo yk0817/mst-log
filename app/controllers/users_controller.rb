@@ -35,7 +35,7 @@ class UsersController < ApplicationController
   def instance
     
     # あとでリファ
-    p account_params["user_id"]
+    
     hash = {}
     hash[:user_id] = account_params["user_id"].to_i
     hash[:instance] = "mstdn.jp"
@@ -48,6 +48,7 @@ class UsersController < ApplicationController
     hash[:instance_user_name] = account_params["pawoo.net"]
     CrawlState.find_or_create_by(hash) unless hash[:instance_user_name].empty?
     redirect_to(user_path)
+    
   end
   
   
