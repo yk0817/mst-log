@@ -33,14 +33,29 @@ class UsersController < ApplicationController
   end
   
   def instance
-    p params
-      
-    exit
+    
+    # あとでリファ
+    p account_params["user_id"]
+    hash = {}
+    hash[:user_id] = account_params["user_id"].to_i
+    hash[:instance] = "mstdn.jp"
+    hash[:instance_user_name] = account_params["mstdn.jp"]
+    CrawlState.find_or_create_by(hash) unless hash[:instance_user_name].empty?
+    hash[:instance] = "friends.nico"
+    hash[:instance_user_name] = account_params["friends.nico"]
+    CrawlState.find_or_create_by(hash)  unless hash[:instance_user_name].empty?
+    hash[:instance] = "pawoo.net"
+    hash[:instance_user_name] = account_params["pawoo.net"]
+    CrawlState.find_or_create_by(hash) unless hash[:instance_user_name].empty?
     redirect_to(user_path)
   end
   
   
   private
+  
+  def instatnce_check(instance_name)
+    instatnce_name.strip.gsub(/^[@＠]/,"") 
+  end
   
   def set_user
     @user = User.find(params[:id]) 
@@ -50,6 +65,10 @@ class UsersController < ApplicationController
     @toots = @user.toots.page(params[:page]).per(ApplicationController::PER)
   end
   
+  def account_params
+    # シンボル
+    params.permit("user_id","mstdn.jp",'friends.nico','pawoo.net')
+  end
   
 end
   
