@@ -1,10 +1,10 @@
 namespace :mast do
   
-  class MatCrawl
+  class MatsCrawl
     
     def crawl_db_insert(instance_name)
       CrawlState.where(:crawl_status => 0,:instance => instance_name).find_each(:batch_size => 1) do |instance|
-        crawl = MatCrawl.new
+        crawl = MastCrawl.new
         url = "https://#{instance.instance}/@#{instance.instance_user_name}"
         instance.crawl_status = 1 # crawling...
         instance.save 
@@ -37,7 +37,7 @@ namespace :mast do
         # 最小のtoot_date取得、ブーストは除く
         
         
-        crawl = MatCrawl.new
+        crawl = MastCrawl.new
         url = "https://#{instance.instance}/@#{instance.instance_user_name}"
         instance.update_crawl_status = 1 # crawling...
         instance.save 
@@ -98,7 +98,7 @@ namespace :mast do
   
   # 一つのアカウントで作成
   task :mastdn_crawl => :environment do
-    MatCrawl.new.crawl_db_insert("")
+    MastCrawl.new.crawl_db_insert("")
   end
   
   # 更新ロジックを作成しておく
