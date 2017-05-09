@@ -12,5 +12,9 @@ class CrawlState < ApplicationRecord
       CrawlState.create(hash)
     end
   end
+  USER_ERROR = 'アルファベット・数値・アンダーバー(_)で入力してください'
+
+  validates :instance_user_name,
+    format: { with: /\A[a-zA-Z0-9_].+/,allow_blank: true,message: USER_ERROR}
   
 end
