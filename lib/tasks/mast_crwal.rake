@@ -6,7 +6,7 @@ namespace :mast do
       CrawlState.where(:crawl_status => 0,:instance => instance_name).find_each(:batch_size => 1) do |instance|
         crawl = MatCrawl.new
         url = "https://#{instance.instance}/@#{instance.instance_user_name}"
-        instance.crawl_status = 1
+        instance.crawl_status = 1 # crawling...
         instance.save 
 
         begin
@@ -15,15 +15,28 @@ namespace :mast do
             sleep(1)
             crawl.db_insert(nokogiri_parse,instance.user_id,instance.id,instance.instance)
             next_url = crawl.next_page?(nokogiri_parse)
-            break unless next_url
+            
+            unless next_url
+              instance.crawl_status = 3 # status 3 finish
+              instance.save
+              break 
+            end
+            
             url = next_url
           end
         rescue => e
+          p "crawl_db_insert_error!"
           p e.backtrace
           p e.message
-          instance.crawl_status = 2
+          instance.crawl_status = 2 # 2 error end
           instance.save 
         end
+      end
+    end
+    
+    def crawl_db_update(instance_name)
+      CrawlState.where(:update_crawl_status => 0,:crawl_status => 3,:instance => instance_name).find_each(:batch_size => 1) do |instance|
+        
       end
     end
     
@@ -71,11 +84,15 @@ namespace :mast do
       end
     end
     
+    def alread_db_saved?
+      
+    end
+    
   end
   
   # 一つのアカウントで作成
   task :mastdn_crawl => :environment do
-    MatCrawl.new.crawl_db_insert("mstdn.jp")
+    MatCrawl.new.crawl_db_insert("")
   end
   
   # 更新ロジックを作成しておく
