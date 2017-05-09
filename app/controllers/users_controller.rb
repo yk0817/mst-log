@@ -34,9 +34,6 @@ class UsersController < ApplicationController
   
   def instance
     
-    # あとでリファ
-    # CrawlState.toots
-    # CrawlState.find(1).toots
     CrawlState.relate_toot_find_destroy("mstdn.jp",account_params,hash)
     CrawlState.relate_toot_find_destroy("friends.nico",account_params,hash)
     CrawlState.relate_toot_find_destroy("pawoo.net",account_params,hash)
