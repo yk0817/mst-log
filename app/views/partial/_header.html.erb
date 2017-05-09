@@ -1,10 +1,16 @@
 <header class = "header-top">
   <div class="header-wrapper">      
     <div class="grid grid-wrapper "> 
-      <%= link_to(home_path,:class=>"header-link fw-bold") do %>
-        <div class="logo-wrapper">
-          <%= image_tag("logo2.jpg",:class => "header-logo") %>
-        </div>
+      <% if current_user %>
+        <%= link_to(user_path(current_user.id),:class=>"header-link fw-bold") do %>
+          <div class="logo-wrapper">
+            <%= image_tag("logo2.jpg",:class => "header-logo") %>
+          </div>
+        <% end %>
+      <% else %>
+          <div class="logo-wrapper">
+            <%= image_tag("logo2.jpg",:class => "header-logo") %>
+          </div>
       <% end %>
       <%= link_to('マストログ？',home_path,:class=>"header-link fw-bold about-site") %>
       <%= link_to("アカウント登録",new_user_path,:class => "header-link fw-bold") %>
