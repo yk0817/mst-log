@@ -1,6 +1,34 @@
 namespace :mast do
   
   class MatCrawl
+    
+    def crawl_db_insert(instance_name)
+      CrawlState.where(:crawl_status => 0,:instance => instance_name).find_each(:batch_size => 1) do |instance|
+        crawl = MatCrawl.new
+        url = "https://#{instance.instance}/@#{instance.instance_user_name}"
+        instance.crawl_status = 1
+        instance.save 
+
+        begin
+          while TRUE
+            nokogiri_parse = crawl.crawl(url)
+            sleep(1)
+            crawl.db_insert(nokogiri_parse,instance.user_id,instance.id,instance.instance)
+            next_url = crawl.next_page?(nokogiri_parse)
+            break unless next_url
+            url = next_url
+          end
+        rescue => e
+          p e.backtrace
+          p e.message
+          instance.crawl_status = 2
+          instance.save 
+        end
+      end
+    end
+    
+    private 
+    
     def crawl(url)
       charset = nil
       html = open(url) do |f|
@@ -45,33 +73,11 @@ namespace :mast do
     
   end
   
-  # スクレイプ保存タスクを書いていく
-  task :crawl => :environment do
-
-    # url = "https://mstdn.jp/@#{}"
-    # url = "https://pawoo.net/@#{}"
-    # url = "https://friends.nico/@#{}"
-    CrawlState.where(:crawl_status => 0).find_each(:batch_size => 1) do |instance|
-      crawl = MatCrawl.new
-      url = "https://mstdn.jp/@#{instance.instance_user_name}"
-      instance.crawl_status = 1
-      instance.save 
-
-      begin
-        while TRUE
-          nokogiri_parse = crawl.crawl(url)
-          sleep(1)
-          crawl.db_insert(nokogiri_parse,instance.user_id,instance.id,instance.instance)
-          next_url = crawl.next_page?(nokogiri_parse)
-          break unless next_url
-          url = next_url
-        end
-      rescue => e
-        p e.backtrace
-        p e.message
-        instance.crawl_status = 2
-        instance.save 
-      end
-    end
+  # 一つのアカウントで作成
+  task :mastdn_crawl => :environment do
+    MatCrawl.new.crawl_db_insert("mstdn.jp")
   end
+  
+  # 更新ロジックを作成しておく
+
 end
