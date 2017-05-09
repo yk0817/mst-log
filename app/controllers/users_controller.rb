@@ -54,7 +54,7 @@ class UsersController < ApplicationController
   end
   
   def set_toot
-    @toots = @user.toots.page(params[:page]).per(ApplicationController::PER)
+    @toots = @user.toots.order("toot_date DESC").page(params[:page]).per(ApplicationController::PER)
   end
   
   def account_params
