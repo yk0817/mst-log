@@ -15,13 +15,11 @@ namespace :mast do
             sleep(1)
             crawl.db_insert(nokogiri_parse,instance.user_id,instance.id,instance.instance)
             next_url = crawl.next_page?(nokogiri_parse)
-            
             unless next_url
               instance.crawl_status = 3 # status 3 finish
               instance.save
               break 
             end
-            
             url = next_url
           end
         rescue => e
@@ -36,9 +34,21 @@ namespace :mast do
     
     def crawl_db_update(instance_name)
       CrawlState.where(:update_crawl_status => 0,:crawl_status => 3,:instance => instance_name).find_each(:batch_size => 1) do |instance|
+        # 最小のtoot_date取得、ブーストは除く
+        
+        
+        crawl = MatCrawl.new
+        url = "https://#{instance.instance}/@#{instance.instance_user_name}"
+        instance.update_crawl_status = 1 # crawling...
+        instance.save 
+        
+        # 最初のtoot_dateならbreakし、終了
+
         
       end
     end
+    
+    
     
     private 
     
@@ -57,12 +67,8 @@ namespace :mast do
     end
     
     def next_page?(nokogiri_parse)
-      # 次のページ
-      if nokogiri_parse.at(".next")
-        next_url = nokogiri_parse.css(".next")[0]["href"]
-      else
-        next_url = false
-      end
+      next_url = nokogiri_parse.css(".next")[0]["href"]  if nokogiri_parse.at(".next")
+      next_url = false unless nokogiri_parse.at(".next")
       next_url
     end
     
