@@ -1,11 +1,12 @@
 namespace :mast do
   
-  class MatsCrawl
+  class MastCrawl
     
     def crawl_db_insert(instance_name)
       CrawlState.where(:crawl_status => 0,:instance => instance_name).find_each(:batch_size => 1) do |instance|
         crawl = MastCrawl.new
         url = "https://#{instance.instance}/@#{instance.instance_user_name}"
+        p url
         instance.crawl_status = 1 # crawling...
         instance.save 
 
@@ -35,23 +36,36 @@ namespace :mast do
     def crawl_db_update(instance_name)
       CrawlState.where(:update_crawl_status => 0,:crawl_status => 3,:instance => instance_name).find_each(:batch_size => 1) do |instance|
         # 最小のtoot_date取得、ブーストは除く
-        
+        toot_min_date = Toot.where(:user_id => 1,:crawl_instance_id => 1,:toot_instance => "mstdn.jp").where.not(:toot_reblogged => 1).maximum('toot_date')
         
         crawl = MastCrawl.new
         url = "https://#{instance.instance}/@#{instance.instance_user_name}"
         instance.update_crawl_status = 1 # crawling...
         instance.save 
-        
         # 最初のtoot_dateならbreakし、終了
-
-        
+        begin
+          while TRUE
+            nokogiri_parse = crawl.crawl(url)
+            sleep(1)
+            crawl.db_insert(nokogiri_parse,instance.user_id,instance.id,instance.instance)
+            next_url = crawl.next_page?(nokogiri_parse)
+            unless next_url
+              instance.crawl_status = 3 # status 3 finish
+              instance.save
+              break 
+            end
+            url = next_url
+          end
+        rescue => e
+          p "crawl_db_insert_error!"
+          p e.backtrace
+          p e.message
+          instance.crawl_status = 2 # 2 error end
+          instance.save 
+        end
       end
     end
-    
-    
-    
-    private 
-    
+        
     def crawl(url)
       charset = nil
       html = open(url) do |f|
@@ -90,6 +104,8 @@ namespace :mast do
       end
     end
     
+
+    
     def alread_db_saved?
       
     end
@@ -98,9 +114,21 @@ namespace :mast do
   
   # 一つのアカウントで作成
   task :mastdn_crawl => :environment do
-    MastCrawl.new.crawl_db_insert("")
+    MastCrawl.new.crawl_db_insert("mstdn.jp")
+  end
+  
+  task :nico_crawl => :environment do
+    MastCrawl.new.crawl_db_insert("friends.nico")
+  end
+  
+  task :pawoo_crawl => :environment do
+    MastCrawl.new.crawl_db_insert("mstdn.jp")
   end
   
   # 更新ロジックを作成しておく
 
 end
+
+__END__
+`bundle exec rails mast:mastdn_crawl`
+db_insert時に
