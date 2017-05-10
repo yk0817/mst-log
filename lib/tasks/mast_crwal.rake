@@ -75,10 +75,7 @@ namespace :mast do
       Nokogiri::HTML.parse(html, nil, charset)
     end
     
-    def parse(nokogiri_parse)
-      doc = nokogiri_parse    
-      doc
-    end
+
     
     def next_page?(nokogiri_parse)
       next_url = nokogiri_parse.css(".next")[0]["href"]  if nokogiri_parse.at(".next")
@@ -87,24 +84,37 @@ namespace :mast do
     end
     
     def db_insert(nokogiri_body,user_id,crawl_instance_id,instance_name)
+      hash_for_db = {}
+      hash_for_db[:user_id] = user_id
+      hash_for_db[:crawl_instance_id] = crawl_instance_id
+      hash_for_db[:instance_name] = instance_name
       nokogiri_body.css(".entry").each do |parse|
-        hash = {}
-        hash[:toot_id] = parse.css(".status__meta > .u-uid")[0].attributes["href"].value.match(/.+\/(\d+)$/).captures[0]
-        hash[:toot_username] = parse.css(".display-name > span").text
-        hash[:toot_display_name] = parse.css(".display-name > strong").text
-        hash[:toot_reblogged] = 1 if parse.at(".fa-retweet") #ブーストは1ブーストじゃない→0
-        hash[:toot_display_name] = parse.css(".display-name").to_html
-        hash[:toot_link_text] = parse.css(".status__attachments__inner").to_html if parse.at(".status__attachments__inner")
-        hash[:toot_date] =  Time.parse(parse.css("time")[0].attributes["datetime"].value) #データとして保存用
-        hash[:toot_text] = parse.css("div.e-content").to_html #テキスト本文 面倒なんでタグごとぶっこむ
-        hash[:user_id] = user_id
-        hash[:crawl_instance_id] = crawl_instance_id
-        hash[:toot_instance] = instance_name
+        hash = for_db_hash(parse,hash_for_db)
         Toot.find_or_create_by(hash)
       end
     end
     
-
+    def parse(nokogiri_parse)
+      doc = nokogiri_parse    
+      doc
+    end
+    
+    def for_db_hash(parse,**hash_for_db)
+      hash = {}
+      hash[:toot_id] = parse.css(".status__meta > .u-uid")[0].attributes["href"].value.match(/.+\/(\d+)$/).captures[0]
+      hash[:toot_username] = parse.css(".display-name > span").text
+      hash[:toot_display_name] = parse.css(".display-name > strong").text
+      hash[:toot_reblogged] = 1 if parse.at(".fa-retweet") #ブーストは1ブーストじゃない→0
+      hash[:toot_display_name] = parse.css(".display-name").to_html
+      hash[:toot_link_text] = parse.css(".status__attachments__inner").to_html if parse.at(".status__attachments__inner")
+      hash[:toot_date] =  Time.parse(parse.css("time")[0].attributes["datetime"].value) #データとして保存用
+      hash[:toot_text] = parse.css("div.e-content").to_html #テキスト本文 面倒なんでタグごとぶっこむ
+      hash[:user_id] = hash_for_db[:user_id]
+      hash[:crawl_instance_id] = hash_for_db[:crawl_instance_id]
+      hash[:toot_instance] = hash_for_db[:instance_name]
+      return hash
+    end
+    
     
     def alread_db_saved?
       
