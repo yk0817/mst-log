@@ -6,7 +6,6 @@ namespace :mast do
       CrawlState.where(:crawl_status => 0,:instance => instance_name).find_each(:batch_size => 1) do |instance|
         crawl = MastCrawl.new
         url = "https://#{instance.instance}/@#{instance.instance_user_name}"
-        p url
         instance.crawl_status = 1 # crawling...
         instance.save 
 
@@ -47,20 +46,28 @@ namespace :mast do
           while TRUE
             nokogiri_parse = crawl.crawl(url)
             sleep(1)
-            crawl.db_insert(nokogiri_parse,instance.user_id,instance.id,instance.instance)
+            toot_unix_time_array = []
+            crawl.db_insert(nokogiri_parse,instance.user_id,instance.id,instance.instance) do 
+              nokogiri_parse.css(".entry").each do |parse|
+                toot_unix_time_array << Time.parse(parse.css("time")[0].attributes["datetime"].value).to_i  unless parse.at(".fa-retweet") #データとして保存用
+              end
+            end
+            
+            toot_scraped_unix_time = toot_unix_time_array.min
             next_url = crawl.next_page?(nokogiri_parse)
-            unless next_url
-              instance.crawl_status = 3 # status 3 finish
+            
+            if toot_min_date.to_i > toot_scraped_unix_time.to_i
+              instance.update_crawl_status = 3 # status 3 finish
               instance.save
-              break 
+              break
             end
             url = next_url
           end
         rescue => e
-          p "crawl_db_insert_error!"
+          p "crawl_db_update_error!"
           p e.backtrace
           p e.message
-          instance.crawl_status = 2 # 2 error end
+          instance.update_crawl_status = 2 # 2 error end
           instance.save 
         end
       end
@@ -91,7 +98,8 @@ namespace :mast do
       nokogiri_body.css(".entry").each do |parse|
         hash = for_db_hash(parse,hash_for_db)
         Toot.find_or_create_by(hash)
-      end
+      end 
+      yield if block_given?
     end
     
     def parse(nokogiri_parse)
@@ -116,13 +124,10 @@ namespace :mast do
     end
     
     
-    def alread_db_saved?
-      
-    end
+
     
   end
   
-  # 一つのアカウントで作成
   task :mastdn_crawl => :environment do
     MastCrawl.new.crawl_db_insert("mstdn.jp")
   end
@@ -132,7 +137,19 @@ namespace :mast do
   end
   
   task :pawoo_crawl => :environment do
-    MastCrawl.new.crawl_db_insert("mstdn.jp")
+    MastCrawl.new.crawl_db_insert("pawoo.net")
+  end
+  
+  task :mastdn_update_crawl => :environment do
+    MastCrawl.new.crawl_db_update("mstdn.jp")
+  end
+  
+  task :nico__update_crawl => :environment do
+    MastCrawl.new.crawl_db_update("friends.nico")
+  end
+  
+  task :mastdn_update_crawl => :environment do
+    MastCrawl.new.crawl_db_update("pawoo.net")
   end
   
   # 更新ロジックを作成しておく
