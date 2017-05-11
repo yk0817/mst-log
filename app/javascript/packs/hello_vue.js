@@ -7,13 +7,31 @@
 import Vue from 'vue/dist/vue.esm'
 import App from './app.vue'
 
-document.addEventListener('DOMContentLoaded', () => {
-  document.body.appendChild(document.createElement('hello'))
-  const app = new Vue({
-    el: 'hello',
-    template: '<App/>',
-    components: { App }
-  })
+var search_width_flag = true;
 
-  console.log(app)
-})
+if (search_width_flag){
+  window.addEventListener('resize', function () {
+    let windowWidth = window.innerWidth;
+    if (windowWidth < 768 && search_width_flag) {
+      document.querySelector(".example-body-wrapper > div.grid").classList.remove("grid");
+      search_width_flag = false;
+    } else if (windowWidth > 768 && !search_width_flag) {
+      document.querySelector(".example-body-wrapper > div").classList.add("grid");
+      search_width_flag = true;
+    }
+  });
+};
+
+if (search_width_flag){
+  window.addEventListener('load', function () {
+    let windowWidth = window.innerWidth;
+    if (windowWidth < 768 && search_width_flag) {
+      document.querySelector(".example-body-wrapper > div.grid").classList.remove("grid");
+      search_width_flag = false;
+    } else if (windowWidth > 768 && !search_width_flag) {
+      document.querySelector(".example-body-wrapper > div").classList.add("grid");
+      search_width_flag = true;
+    }
+  });
+};
+
