@@ -1,9 +1,10 @@
 <div class="index-container">
-  <% if flash.notice %>
-    <p><%= flash.notice %></p>
-  <% end %>
+
   <div class="body-wrapper clearfix">
     <main class="main-wrapper">
+      <% if flash.notice %>
+        <h2 class="flash-notice ta-center fw-semibold "><%= flash.notice %></h2>
+      <% end %>
       <section class="user-wrapper grid">
           <%= render :partial => "partial/prof_content" %>
         <div class="toot-calendar">

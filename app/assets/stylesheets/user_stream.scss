@@ -14,6 +14,13 @@ body {
       margin: 0 auto;
       // ↓仮置き
       width: 70%;
+      .flash-notice {
+        font-size: 3rem;
+        margin-top: 25px;
+        background-color: #ff6666;
+        border-radius: $base-border-radius;
+        color: #fff;
+      }
       .user-wrapper{
         position: relative;
         height: auto;
