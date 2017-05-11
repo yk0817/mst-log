@@ -82,7 +82,6 @@ namespace :mast do
       Nokogiri::HTML.parse(html, nil, charset)
     end
     
-
     
     def next_page?(nokogiri_parse)
       next_url = nokogiri_parse.css(".next")[0]["href"]  if nokogiri_parse.at(".next")
@@ -123,11 +122,9 @@ namespace :mast do
       return hash
     end
     
-    
-
-    
   end
   
+  # 新規登録用のクローリング
   task :mastdn_crawl => :environment do
     MastCrawl.new.crawl_db_insert("mstdn.jp")
   end
@@ -139,6 +136,8 @@ namespace :mast do
   task :pawoo_crawl => :environment do
     MastCrawl.new.crawl_db_insert("pawoo.net")
   end
+  
+  # 更新用DBクローリング
   
   task :mastdn_update_crawl => :environment do
     MastCrawl.new.crawl_db_update("mstdn.jp")
@@ -152,10 +151,8 @@ namespace :mast do
     MastCrawl.new.crawl_db_update("pawoo.net")
   end
   
-  # 更新ロジックを作成しておく
-
 end
 
 __END__
+例
 `bundle exec rails mast:mastdn_crawl`
-db_insert時に

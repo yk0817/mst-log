@@ -4,7 +4,7 @@ require 'dotenv/tasks'
 
 namespace :tweet_prof  do
   # ↓ロガー
-  ActiveRecord::Base.logger = Logger.new(STDOUT)
+  # ActiveRecord::Base.logger = Logger.new(STDOUT)
 
   desc "ツイッタープロフ更新" #=> 説明
   task :prof_update => :environment do

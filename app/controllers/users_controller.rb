@@ -37,8 +37,7 @@ class UsersController < ApplicationController
     CrawlState.relate_toot_find_destroy("mstdn.jp",account_params,hash)
     CrawlState.relate_toot_find_destroy("friends.nico",account_params,hash)
     CrawlState.relate_toot_find_destroy("pawoo.net",account_params,hash)
-  
-    redirect_to(user_path)
+    redirect_to(user_path,:notice => '登録完了です。\nデータ収集完了までしばらくお待ち下さい。')
     
   end
   
