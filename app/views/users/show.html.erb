@@ -1,5 +1,4 @@
 <div class="index-container">
-
   <div class="body-wrapper clearfix">
     <main class="main-wrapper">
       <% if flash.notice %>
@@ -13,7 +12,7 @@
         </div>
       </section>
       <section class="toot-wrapper grid">
-          <!-- タイムライントゥート -->
+        <!-- タイムライントゥート -->
         <div class="column--heavy toot-content-wrapper">
           <%= render :partial => "partial/toot", :collection => @toots %>
         </div>

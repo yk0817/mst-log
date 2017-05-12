@@ -17,10 +17,13 @@ class User < ApplicationRecord
     tweet_place = auth_hash[:extra][:raw_info][:location]
     tweet_followed_count = auth_hash[:extra][:raw_info][:followers_count]
     tweet_following_count = auth_hash[:extra][:raw_info][:friends_count]
+    self_introduce = auth_hash[:extra][:raw_info][:description]
+
     
     User.find_or_create_by(tweet_user_id: tweet_user_id) do |user|
         user.tweet_nickname = tweet_nickname
         user.tweet_user_id = tweet_user_id
+        user.tweet_self_introduce = self_introduce
         user.tweet_screen_name = tweet_screen_name
         user.tweet_background_image = tweet_background_image
         user.tweet_small_image = tweet_small_image
