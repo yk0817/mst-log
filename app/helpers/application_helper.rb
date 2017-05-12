@@ -14,9 +14,8 @@ module ApplicationHelper
   end
   
   def instance_link(user,instance_name)
-    instance_count = @user.crawl_states.where(:instance => instance_name).count
+    instance_count = @user.crawl_states.where(:instance => instance_name).count || 0
     account = @user.crawl_states.find_by(:instance => instance_name)
-    # link_to_if(instance_count >= 1 ,"#{account.instance.to_s}","https://#{account.instance}/@#{account.instance_user_name}",:class => "#{instance_name}-link")
     link_to_if(instance_count >= 1 ,image_tag("#{account.instance.to_s}.png",:class=> "instance-icon"),"https://#{account.instance}/@#{account.instance_user_name}",:class => "#{instance_name}-link")
   end
   
