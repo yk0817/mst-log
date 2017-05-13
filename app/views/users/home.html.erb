@@ -1,5 +1,8 @@
 <div class="home-wrapper">
   <div class="home-body-wrapper">
+    <% if flash.notice %>
+      <h2 class="flash-notice ta-center fw-semibold "><%= flash.notice %></h2>
+    <% end %>
     <section class="home-to-login">
       <h1 class="home-title fw-bold">
         <%= image_tag("mstdn.jp.png",:class => "home-mstdn-logo") %>

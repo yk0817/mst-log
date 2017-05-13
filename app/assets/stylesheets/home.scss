@@ -5,6 +5,13 @@
     margin: 0 auto;
     background-color: #fff;
     padding: 30px;
+    .flash-notice {
+      font-size: 3rem;
+      margin-top: 25px;
+      background-color: #ff6666;
+      border-radius: $base-border-radius;
+      color: #fff;
+    }
     .home-to-login {
       background-color: rgba(51,51,51,0.25);
       @include base-border-radius;

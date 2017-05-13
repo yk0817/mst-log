@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[show edit]
+  before_action :set_user, only: %i[new]
   before_action :set_toot, only: %i[show]
   
   def home
@@ -49,7 +49,11 @@ class UsersController < ApplicationController
   end
   
   def set_user
-    @user = User.find(params[:id]) 
+    if params[:id]
+      @user = User.find(params[:id]) 
+    else
+      redirect_to(home_path, :notice => 'ログインして下さい。')
+    end
   end
   
   def set_toot
