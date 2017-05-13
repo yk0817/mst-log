@@ -122,6 +122,10 @@ namespace :mast do
       return hash
     end
     
+    def reset_update_flag
+      CrawlState.update_all(:update_crawl_status => 0)
+    end
+    
   end
   
   # 新規登録用のクローリング
@@ -138,6 +142,9 @@ namespace :mast do
   end
   
   # 更新用DBクローリング
+  task :reset_update_flag => :environment do
+    MastCrawl.new.reset_update_flag
+  end
   
   task :mastdn_update_crawl => :environment do
     MastCrawl.new.crawl_db_update("mstdn.jp")
@@ -148,8 +155,10 @@ namespace :mast do
   end
   
   task :mastdn_update_crawl => :environment do
-    MastCrawl.new.crawl_db_update("pawoo.net")
+    MastCrawl.new.
   end
+  
+  # 更新リセット用のタスク
   
 end
 

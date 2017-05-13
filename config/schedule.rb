@@ -49,8 +49,10 @@ every 2.hour do
   rails 'mast:mastdn_update_crawl'
 end
 
-every  2.days do
+every  3.hour do
   rails 'tweet_prof:prof_update'
 end
 
-
+every  2.days do
+  rails 'tweet_prof:prof_update'
+end
