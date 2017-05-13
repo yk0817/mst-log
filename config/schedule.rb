@@ -24,35 +24,35 @@
 # It's helpful, but not entirely necessary to understand cron before proceeding.
 # http://en.wikipedia.org/wiki/Cron
 
-rails_env = ENV['RAILS_ENV'] || :development
+rails_env = :production
 set :environment, rails_env
 
 set :output, 'log/crontab.log'
 
 every 2.hour do
-  rails 'mast:mastdn_crawl'
+  rake 'mast:mastdn_crawl'
 end
 every 2.hour do
-  rails 'mast:nico_crawl'
+  rake 'mast:nico_crawl'
 end
 every 2.hour do
-  rails 'mast:pawoo_crawl'
+  rake 'mast:pawoo_crawl'
 end
 
 every 2.hour do
-  rails 'mast:mastdn_update_crawl'
+  rake 'mast:mastdn_update_crawl'
 end
 every 2.hour do
-  rails 'mast:nico__update_crawl'
+  rake 'mast:nico__update_crawl'
 end
 every 2.hour do
-  rails 'mast:mastdn_update_crawl'
+  rake 'mast:mastdn_update_crawl'
 end
 
 every  3.hour do
-  rails 'tweet_prof:prof_update'
+  rake 'tweet_prof:prof_update'
 end
 
 every  2.days do
-  rails 'tweet_prof:prof_update'
+  rake 'tweet_prof:prof_update'
 end
