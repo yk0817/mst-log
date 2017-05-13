@@ -6,8 +6,12 @@ sql=<<EOS
   AND  toot_date BETWEEN (CURDATE() - INTERVAL 21 DAY)
   AND (CURDATE() + INTERVAL 1 DAY) group by date order by date desc LIMIT 7
 EOS
+
+    
+  end
   
-    ActiveRecord::Base.connection.select_all(sql).to_hash
+  def user_toot_have_account?(user_id)
+    
   end
 
 end

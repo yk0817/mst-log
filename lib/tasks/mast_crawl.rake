@@ -141,11 +141,7 @@ namespace :mast do
     MastCrawl.new.crawl_db_insert("pawoo.net")
   end
   
-  # 更新用DBクローリング
-  task :reset_update_flag => :environment do
-    MastCrawl.new.reset_update_flag
-  end
-  
+  # 更新用DBクローリング  
   task :mastdn_update_crawl => :environment do
     MastCrawl.new.crawl_db_update("mstdn.jp")
   end
@@ -155,11 +151,14 @@ namespace :mast do
   end
   
   task :mastdn_update_crawl => :environment do
-    MastCrawl.new.
+    MastCrawl.new.crawl_db_update("pawoo.net")
   end
   
-  # 更新リセット用のタスク
-  
+  # 更新フラグリセット用のタスク
+  task :reset_update_flag => :environment do
+    MastCrawl.new.reset_update_flag
+  end
+
 end
 
 __END__
