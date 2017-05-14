@@ -36,15 +36,18 @@ namespace :mast do
       CrawlState.where(:update_crawl_status => 0,:crawl_status => 3,:instance => instance_name).find_each(:batch_size => 1) do |instance|
         # 最小のtoot_date取得、ブーストは除く
         toot_min_date = Toot.where(:user_id => 1,:crawl_instance_id => 1,:toot_instance => "mstdn.jp").where.not(:toot_reblogged => 1).maximum('toot_date')
-        
+        # p toot_min_date
         crawl = MastCrawl.new
         url = "https://#{instance.instance}/@#{instance.instance_user_name}"
         instance.update_crawl_status = 1 # crawling...
         instance.save 
         # 最初のtoot_dateならbreakし、終了
+        # p url
         begin
           while TRUE
             nokogiri_parse = crawl.crawl(url)
+            # p nokogiri_parse
+            crawl.db_insert(nokogiri_parse,instance.user_id,instance.id,instance.instance)
             sleep(1)
             toot_unix_time_array = []
             crawl.db_insert(nokogiri_parse,instance.user_id,instance.id,instance.instance) do 
@@ -150,7 +153,7 @@ namespace :mast do
     MastCrawl.new.crawl_db_update("friends.nico")
   end
   
-  task :mastdn_update_crawl => :environment do
+  task :pawoo_update_crawl => :environment do
     MastCrawl.new.crawl_db_update("pawoo.net")
   end
   

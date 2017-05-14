@@ -29,28 +29,24 @@ set :environment, rails_env
 
 set :output, 'log/crontab.log'
 
-every 2.hour do
+every 1.hour do
   rake 'mast:mastdn_crawl'
 end
-every 2.hour do
+every 1.hour do
   rake 'mast:nico_crawl'
 end
-every 2.hour do
+every 1.hour do
   rake 'mast:pawoo_crawl'
 end
 
-every 2.hour do
+every 1.hour do
   rake 'mast:mastdn_update_crawl'
 end
-every 2.hour do
+every 1.hour do
   rake 'mast:nico__update_crawl'
 end
-every 2.hour do
-  rake 'mast:mastdn_update_crawl'
-end
-
-every  3.hour do
-  rake 'tweet_prof:prof_update'
+every 1.hour do
+  rake 'mast:pawoo_update_crawl'
 end
 
 every  2.days do
