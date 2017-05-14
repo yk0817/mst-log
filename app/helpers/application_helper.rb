@@ -21,6 +21,9 @@ module ApplicationHelper
     end
   end
   
+  def saved_toots?(id)
+    Toot.where(:user_id => id).exists? && User.where(:id => id).exists?
+  end
 
 
     # <%= link_to_if(@user.website_url,"nico.friends",@user.website_url,:class => "friends-link")%>

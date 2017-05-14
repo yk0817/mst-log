@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[new]
+  before_action :set_user, only: %i[new show]
   before_action :set_toot, only: %i[show]
   
   def home
@@ -12,8 +12,10 @@ class UsersController < ApplicationController
   end
   
   def show
-    @date_counts = Toot.new.toot_week_count(params[:id])
-    @toot_counts = Toot.where(:user_id => params[:id]).count
+    if Toot.where(:user_id => params[:id]).count > 0
+      @date_counts = Toot.new.toot_week_count(params[:id].to_i)
+      @toot_counts = Toot.where(:user_id => params[:id]).count
+    end
     @recent_users = User.order('created_at DESC').limit(5)
   end
   
@@ -49,15 +51,17 @@ class UsersController < ApplicationController
   end
   
   def set_user
-    if params[:id]
-      @user = User.find(params[:id]) 
+    unless session[:user_id].nil?
+      @user = User.find(current_user.id) 
     else
       redirect_to(home_path, :notice => 'ログインして下さい。')
     end
   end
   
   def set_toot
-    @toots = @user.toots.order("toot_date DESC").page(params[:page]).per(ApplicationController::PER)
+    if Toot.where(:user_id => params[:id]).exists? && User.where(:id => params[:id]).exists?
+      @toots = Toot.where(:user_id => params[:id]).order("toot_date DESC").page(params[:page]).per(ApplicationController::PER)
+    end
   end
   
   def account_params

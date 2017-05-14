@@ -7,11 +7,9 @@ sql=<<EOS
   AND (CURDATE() + INTERVAL 1 DAY) group by date order by date desc LIMIT 7
 EOS
 
-    
+    ActiveRecord::Base.connection.select_all(sql).to_hash
   end
   
-  def user_toot_have_account?(user_id)
-    
-  end
+
 
 end
