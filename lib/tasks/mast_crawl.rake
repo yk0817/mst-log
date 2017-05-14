@@ -161,9 +161,6 @@ namespace :mast do
   task :reset_update_flag => :environment do
     MastCrawl.new.reset_update_flag
   end
-
+  
 end
 
-__END__
-例
-`bundle exec rails mast:mastdn_crawl`
