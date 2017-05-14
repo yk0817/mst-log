@@ -48,6 +48,9 @@ end
 every 1.hour do
   rake 'mast:pawoo_update_crawl'
 end
+every 2.hour do
+  rake 'mast:reset_update_flag'
+end
 
 every  2.days do
   rake 'tweet_prof:prof_update'
