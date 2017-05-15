@@ -52,7 +52,7 @@ class UsersController < ApplicationController
   
   def set_user
     unless session[:user_id].nil?
-      @user = User.find(current_user.id) 
+      @user = User.find(params[:id]) 
     else
       redirect_to(home_path, :notice => 'ログインして下さい。')
     end
