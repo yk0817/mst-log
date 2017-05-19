@@ -1,10 +1,8 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[new show]
+  before_action :set_user, only: %i[new show edit]
   before_action :set_toot, only: %i[show]
   
   def home
-    p current_user
-    p @current_user
   end
   
   def index
@@ -27,7 +25,8 @@ class UsersController < ApplicationController
   
   def new
     @instances = ["mstdn.jp","friends.nico","pawoo.net","other_instance1","other_instance2"]
-    @crawl_state = tweet_current_user.crawl_states.build
+    @crawl_state = tweet_current_user.crawl_states.build  if tweet_current_user
+    @crawl_state = current_user.crawl_states.build  if current_user
   end
   
   def create #twitter user create 
@@ -53,8 +52,10 @@ class UsersController < ApplicationController
   end
   
   def set_user
-    unless session[:user_id].nil?
+    if !session[:user_id].nil? 
       @user = User.find(params[:id]) 
+    elsif !current_user.nil?
+      @user = current_user
     else
       redirect_to(home_path, :notice => 'ログインして下さい。')
     end
