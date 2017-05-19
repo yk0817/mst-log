@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :users
   resources :users do
     member do
       post 'instance', as: :instance #path instance_user
