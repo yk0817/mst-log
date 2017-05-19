@@ -65,4 +65,5 @@ gem 'dotenv-rails', require: 'dotenv/rails-now'
 gem 'unicorn'
 gem 'whenever', require: false
 gem 'therubyracer'
+gem 'devise'
 

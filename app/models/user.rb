@@ -14,9 +14,9 @@ class User < ApplicationRecord
     tweet_background_image = auth_hash[:extra][:raw_info][:profile_banner_url] + "/1500x500"
     tweet_small_image = auth_hash[:info][:image]
     tweet_normal_image = auth_hash[:info][:image].to_s.gsub(/normal/,"400x400")
-    tweet_place = auth_hash[:extra][:raw_info][:location]
-    tweet_followed_count = auth_hash[:extra][:raw_info][:followers_count]
-    tweet_following_count = auth_hash[:extra][:raw_info][:friends_count]
+    # tweet_place = auth_hash[:extra][:raw_info][:location]
+    # tweet_followed_count = auth_hash[:extra][:raw_info][:followers_count]
+    # tweet_following_count = auth_hash[:extra][:raw_info][:friends_count]
     self_introduce = auth_hash[:extra][:raw_info][:description]
 
     
@@ -28,9 +28,9 @@ class User < ApplicationRecord
         user.tweet_background_image = tweet_background_image
         user.tweet_small_image = tweet_small_image
         user.tweet_normal_image = tweet_normal_image
-        user.tweet_place = tweet_place
-        user.tweet_followed_count = tweet_followed_count
-        user.tweet_following_count = tweet_following_count
+        # user.tweet_place = tweet_place
+        # user.tweet_followed_count = tweet_followed_count
+        # user.tweet_following_count = tweet_following_count
     end
   end
 end
