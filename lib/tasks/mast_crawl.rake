@@ -144,6 +144,11 @@ namespace :mast do
     MastCrawl.new.crawl_db_insert("pawoo.net")
   end
   
+  task :other_crawl => :environment do
+    CrawlState.where.not(:instance => ["mstdn.jp","friends.nico","pawoo.net"]).find_each(:batch_size => 1) do |instance|
+      MastCrawl.new.crawl_db_insert("#{instance}")
+    end
+  end  
   # 更新用DBクローリング  
   task :mastdn_update_crawl => :environment do
     MastCrawl.new.crawl_db_update("mstdn.jp")
@@ -156,6 +161,12 @@ namespace :mast do
   task :pawoo_update_crawl => :environment do
     MastCrawl.new.crawl_db_update("pawoo.net")
   end
+  
+  task :other_crawl => :environment do
+    CrawlState.where.not(:instance => ["mstdn.jp","friends.nico","pawoo.net"]).find_each(:batch_size => 1) do |instance|
+      MastCrawl.new.crawl_db_update("#{instance}")
+    end
+  end  
   
   # 更新フラグリセット用のタスク
   task :reset_update_flag => :environment do
