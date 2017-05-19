@@ -1,8 +1,8 @@
 <header class = "header-top">
   <div class="header-wrapper">      
     <div class="grid grid-wrapper "> 
-      <% if current_user %>
-        <%= link_to(user_path(current_user.id),:class=>"header-link fw-bold") do %>
+      <% if tweet_current_user %>
+        <%= link_to(user_path(tweet_current_user.id),:class=>"header-link fw-bold") do %>
           <div class="logo-wrapper">
             <%= image_tag("logo2.jpg",:class => "header-logo") %>
           </div>
@@ -13,23 +13,24 @@
           </div>
       <% end %>
       <%= link_to('マストログ？',home_path,:class=>"header-link fw-bold about-site") %>
-      <%= link_to("アカウント登録",new_user_path,:class => "header-link fw-bold") %>
-      <% if logged_in? %>
+      <% if current_user %>
+        <%= link_to("ログアウト",logout_path,:class => "header-link fw-bold")%>
+      <% elsif tweets_logged_in? %>
         <%= link_to("ログアウト",logout_path,:class => "header-link fw-bold")%>
       <% else %>
       <p>
-        <i class="fa fa-twitter fa-2"></i>
-        <%= link_to("ログイン(推奨)",'/auth/twitter',:class => "header-link fw-bold")%>
-      </p>
-      <p>
-        <i class="fa fa-twitter fa-2"></i>
-        <%= link_to("ログイン(非推奨、既に連携済み方のみ)",'/auth/twitter',:class => "header-link fw-bold")%>
+        <i class="fa fa-envelope-o fa-2"></i>
+        <%= link_to("ログイン(推奨)",new_user_session_path,:class => "header-link fw-bold")%>
       </p>
       <% end %>
       <div class="profile-photo-wrapper">
-        <% if current_user %>
+        <% if tweet_current_user %>
+          <%= link_to(user_path(tweet_current_user.id)) do %>
+            <%= image_tag(tweet_current_user.tweet_small_image,:class=>"profile-photo header-common") %>
+            <span class="twitter-nickname fw-bold">マイページ</span>
+          <% end %>
+        <% elsif current_user %>
           <%= link_to(user_path(current_user.id)) do %>
-            <%= image_tag(current_user.tweet_small_image,:class=>"profile-photo header-common") %>
             <span class="twitter-nickname fw-bold">マイページ</span>
           <% end %>
         <% end %>

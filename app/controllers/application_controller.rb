@@ -3,13 +3,13 @@ class ApplicationController < ActionController::Base
   PER = 10
   PER.freeze
   
-  helper_method :current_user,:logged_in?
+  helper_method :tweet_current_user,:twitter_logged_in?
   
-  def logged_in?
+  def tweets_logged_in?
     !!session[:user_id]
   end
   
-  def current_user
+  def tweet_current_user
     return unless session[:user_id]
     @current_user ||= User.find(session[:user_id])
   end

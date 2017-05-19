@@ -3,6 +3,8 @@ class UsersController < ApplicationController
   before_action :set_toot, only: %i[show]
   
   def home
+    p current_user
+    p @current_user
   end
   
   def index
@@ -25,10 +27,10 @@ class UsersController < ApplicationController
   
   def new
     @instances = ["mstdn.jp","friends.nico","pawoo.net","other_instance1","other_instance2"]
-    @crawl_state = current_user.crawl_states.build
+    @crawl_state = tweet_current_user.crawl_states.build
   end
   
-  def create #user create 
+  def create #twitter user create 
     user = User.find_or_create_user_auth_hash(request.env['omniauth.auth'])
     session[:user_id] = user.id
     redirect_to(user_path)
