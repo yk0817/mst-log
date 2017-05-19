@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :users do
     member do
       post 'instance', as: :instance #path instance_user
+      post 'edit_prof', as: :edit_prof
     end
   end
   get '/' => 'users#home',via: [:get],as: :home
