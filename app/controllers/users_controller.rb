@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   end
   
   def new
-    @instances = ["mstdn.jp","friends.nico","pawoo.net"]
+    @instances = ["mstdn.jp","friends.nico","pawoo.net","other_instance1","other_instance2"]
     @crawl_state = current_user.crawl_states.build
   end
   

@@ -19,7 +19,11 @@
       <% else %>
       <p>
         <i class="fa fa-twitter fa-2"></i>
-        <%= link_to("ログイン",'/auth/twitter',:class => "header-link fw-bold")%>
+        <%= link_to("ログイン(推奨)",'/auth/twitter',:class => "header-link fw-bold")%>
+      </p>
+      <p>
+        <i class="fa fa-twitter fa-2"></i>
+        <%= link_to("ログイン(非推奨、既に連携済み方のみ)",'/auth/twitter',:class => "header-link fw-bold")%>
       </p>
       <% end %>
       <div class="profile-photo-wrapper">
