@@ -10,21 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170508132839) do
+ActiveRecord::Schema.define(version: 20170519021015) do
 
   create_table "crawl_states", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
     t.integer "user_id"
     t.string "instance"
     t.integer "crawl_status", default: 0, null: false
+    t.integer "update_crawl_status", default: 0, null: false
     t.string "instance_user_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "update_crawl_status"
   end
 
   create_table "toots", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
     t.string "toot_id"
     t.integer "user_id"
+    t.integer "crawl_instance_id"
     t.string "toot_display_name"
     t.string "toot_username"
     t.text "toot_text"
@@ -34,7 +35,6 @@ ActiveRecord::Schema.define(version: 20170508132839) do
     t.datetime "toot_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "crawl_instance_id"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
@@ -51,6 +51,18 @@ ActiveRecord::Schema.define(version: 20170508132839) do
     t.string "website_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
 end
