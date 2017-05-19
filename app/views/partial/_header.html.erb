@@ -7,6 +7,12 @@
             <%= image_tag("logo2.jpg",:class => "header-logo") %>
           </div>
         <% end %>
+      <% elsif current_user %>
+        <%= link_to(user_path(current_user.id),:class=>"header-link fw-bold") do %>
+          <div class="logo-wrapper">
+            <%= image_tag("logo2.jpg",:class => "header-logo") %>
+          </div>
+        <% end %>
       <% else %>
           <div class="logo-wrapper">
             <%= image_tag("logo2.jpg",:class => "header-logo") %>
@@ -14,15 +20,16 @@
       <% end %>
       <%= link_to('マストログ？',home_path,:class=>"header-link fw-bold about-site") %>
       <% if current_user %>
-        <%= link_to("ログアウト",logout_path,:class => "header-link fw-bold")%>
-      <% elsif tweets_logged_in? %>
+        <%= link_to("ログアウト",destroy_user_session_path,:class => "header-link fw-bold")%>
+      <% elsif tweet_current_user %>
         <%= link_to("ログアウト",logout_path,:class => "header-link fw-bold")%>
       <% else %>
-      <p>
+        <p>
         <i class="fa fa-envelope-o fa-2"></i>
-        <%= link_to("ログイン(推奨)",new_user_session_path,:class => "header-link fw-bold")%>
-      </p>
+        <%= link_to("ログイン",new_user_session_path,:class => "header-link fw-bold")%>
+        </p>
       <% end %>
+            <%= link_to("アカウント登録",new_user_path,:class => "header-link fw-bold") %>
       <div class="profile-photo-wrapper">
         <% if tweet_current_user %>
           <%= link_to(user_path(tweet_current_user.id)) do %>
@@ -31,7 +38,7 @@
           <% end %>
         <% elsif current_user %>
           <%= link_to(user_path(current_user.id)) do %>
-            <span class="twitter-nickname fw-bold">マイページ</span>
+            <span class="current-nickname fw-bold">マイページ</span>
           <% end %>
         <% end %>
       </div>
