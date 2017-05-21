@@ -12,7 +12,7 @@ class CrawlState < ApplicationRecord
       p "---"
       hash[:instance] = account_params["#{instance}"]
       unless account_params["#{instance}_name"].nil?
-        hash[:instance] =  account_params["#{instance}"]
+        hash[:instance] =  account_params["#{instance}"].gsub(/\s|　/,"")
         hash[:instance_user_name] = account_params["#{instance}_name"].gsub(/^[@＠]/,"")
       end
     else
