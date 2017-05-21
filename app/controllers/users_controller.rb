@@ -36,7 +36,8 @@ class UsersController < ApplicationController
   end
   
   def instance
-    
+    p account_params
+    exit
     CrawlState.relate_toot_find_destroy("mstdn.jp",account_params)
     CrawlState.relate_toot_find_destroy("friends.nico",account_params)
     CrawlState.relate_toot_find_destroy("pawoo.net",account_params)
@@ -68,7 +69,7 @@ class UsersController < ApplicationController
   
   def account_params
     # シンボル
-    params.permit("user_id","mstdn.jp",'friends.nico','pawoo.net','other_instance1','other_instance2')
+    params.permit("user_id","mstdn.jp",'friends.nico','pawoo.net','other_instance1','other_instance2','other_instance1_name','other_instance2_name')
   end
   
 end
