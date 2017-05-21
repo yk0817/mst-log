@@ -7,8 +7,16 @@
       text-align:center;
       input {
         margin: 0 auto;
+        border: 1px solid gray;
+        width: 300px;
+        padding: 5px;
+        border-radius: 5px;
+        margin-bottom: 25px;
       }
       margin-bottom: 10px;
+      .remember_me {
+        display: none;
+      }
     }
     .actions{
       text-align: center;
