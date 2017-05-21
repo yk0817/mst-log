@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+  devise_for :users, :controllers => {
+  :sessions      => "devise_sessions"
+}
   resources :users do
     member do
       post 'instance', as: :instance #path instance_user
