@@ -1,0 +1,17 @@
+@import "common";
+.regist-common-wrapper {
+  .regist-body-common-wrapper{
+    width: 70%;
+    margin: 0 auto;
+    .field {
+      text-align:center;
+      input {
+        margin: 0 auto;
+      }
+      margin-bottom: 10px;
+    }
+    .actions{
+      text-align: center;
+    }
+  }
+}

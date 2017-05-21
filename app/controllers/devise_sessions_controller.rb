@@ -9,5 +9,6 @@ class DeviseSessionsController < Devise::SessionsController
 
   def destroy
     super
+    redirect_to(home_path)
   end
 end
