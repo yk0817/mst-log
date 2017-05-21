@@ -20,7 +20,7 @@
       <% end %>
       <%= link_to('マストログ？',home_path,:class=>"header-link fw-bold about-site") %>
       <% if current_user %>
-        <%= link_to("ログアウト",destroy_user_session_path,:class => "header-link fw-bold")%>
+        <%= link_to("ログアウト",logout_path,:class => "header-link fw-bold")%>
       <% elsif tweet_current_user %>
         <%= link_to("ログアウト",logout_path,:class => "header-link fw-bold")%>
       <% else %>
