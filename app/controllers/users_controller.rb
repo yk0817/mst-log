@@ -12,6 +12,8 @@ class UsersController < ApplicationController
   end
   
   def show
+    p params
+    exit
     if Toot.where(:user_id => params[:id]).count > 0
       @date_counts = Toot.new.toot_week_count(params[:id].to_i)
       @toot_counts = Toot.where(:user_id => params[:id]).count
@@ -68,7 +70,7 @@ class UsersController < ApplicationController
   
   def account_params
     # シンボル
-    params.permit("user_id","mstdn.jp",'friends.nico','pawoo.net')
+    params.permit("user_id","mstdn.jp",'friends.nico','pawoo.net','other_instance1','other_instance2')
   end
   
 end
