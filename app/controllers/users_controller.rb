@@ -12,8 +12,6 @@ class UsersController < ApplicationController
   end
   
   def show
-    p params
-    exit
     if Toot.where(:user_id => params[:id]).count > 0
       @date_counts = Toot.new.toot_week_count(params[:id].to_i)
       @toot_counts = Toot.where(:user_id => params[:id]).count
@@ -39,9 +37,9 @@ class UsersController < ApplicationController
   
   def instance
     
-    CrawlState.relate_toot_find_destroy("mstdn.jp",account_params,hash)
-    CrawlState.relate_toot_find_destroy("friends.nico",account_params,hash)
-    CrawlState.relate_toot_find_destroy("pawoo.net",account_params,hash)
+    CrawlState.relate_toot_find_destroy("mstdn.jp",account_params)
+    CrawlState.relate_toot_find_destroy("friends.nico",account_params)
+    CrawlState.relate_toot_find_destroy("pawoo.net",account_params)
     redirect_to(user_path,:notice => '登録完了です。データ収集完了までしばらくお待ち下さい。')
   end
   
