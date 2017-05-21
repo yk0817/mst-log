@@ -13,7 +13,7 @@
           <% end %>
         <% end %>
         <%= f.label :instance,:class => "textfield" do %>
-          <%= f.text_field :instance,:name => "#{instance}_name",:class => "textfield__label",:value => have_instance_account?(instance,current_user) %>
+          <%= f.text_field :instance,:name => instance,:class => "textfield__label",:value => have_instance_account?(instance,current_user) %>
           <span class="textfield__label"><%= instance%>のユーザー名</span>
         <% end %>
       <% end %>

@@ -36,11 +36,11 @@ class UsersController < ApplicationController
   end
   
   def instance
-    p account_params
-    exit
     CrawlState.relate_toot_find_destroy("mstdn.jp",account_params)
     CrawlState.relate_toot_find_destroy("friends.nico",account_params)
     CrawlState.relate_toot_find_destroy("pawoo.net",account_params)
+    CrawlState.relate_toot_find_destroy("other_instance1",account_params)
+    CrawlState.relate_toot_find_destroy("other_instance2",account_params)
     redirect_to(user_path,:notice => '登録完了です。データ収集完了までしばらくお待ち下さい。')
   end
   
