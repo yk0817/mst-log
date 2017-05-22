@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170519021015) do
+ActiveRecord::Schema.define(version: 20170522130431) do
 
   create_table "crawl_states", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
     t.integer "user_id"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20170519021015) do
     t.string "instance_user_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "other_instance_num"
   end
 
   create_table "toots", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
@@ -38,16 +39,16 @@ ActiveRecord::Schema.define(version: 20170519021015) do
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
-    t.string "tweet_nickname", null: false
-    t.integer "tweet_user_id", null: false
-    t.string "tweet_screen_name", null: false
+    t.string "tweet_nickname", default: ""
+    t.integer "tweet_user_id"
+    t.string "tweet_screen_name", default: ""
     t.string "tweet_background_image"
-    t.string "tweet_normal_image", null: false
-    t.string "tweet_small_image", null: false
+    t.string "tweet_normal_image", default: ""
+    t.string "tweet_small_image", default: ""
     t.string "tweet_place"
     t.integer "tweet_followed_count"
     t.integer "tweet_following_count"
-    t.text "tweet_self_introduce", null: false
+    t.text "tweet_self_introduce"
     t.string "website_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
