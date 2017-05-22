@@ -5,15 +5,12 @@ class CrawlState < ApplicationRecord
   def self.relate_toot_find_destroy(instance,account_params={})
     hash = {}
     
-    hash[:user_id] = account_params["user_id"].to_i
-    
-    p instance
+    hash[:user_id] = account_params["user_id"].to_i    
     if instance.to_s.match(/other_instance/)
-      p "---"
       hash[:instance] = account_params["#{instance}"]
-      unless account_params["#{instance}_name"].nil?
-        hash[:instance] =  account_params["#{instance}"].gsub(/\s|　/,"")
-        hash[:instance_user_name] = account_params["#{instance}_name"].gsub(/^[@＠]/,"")
+      unless account_params["#{instance}_domain"].nil?
+        hash[:instance] =  account_params["#{instance}_domain"].gsub(/^[@＠]/,"")
+        hash[:instance_user_name] = account_params["#{instance}"].gsub(/\s|　/,"")
       end
     else
       hash[:instance] = instance
@@ -21,7 +18,7 @@ class CrawlState < ApplicationRecord
     end
     if CrawlState.where(hash).count == 0 && hash[:instance_user_name] != ""
       CrawlState.where(:instance => hash[:instance],:user_id => hash[:user_id]).all.destroy_all
-      CrawlState.create(hash)
+      CrawlState.create(hash)      
     end
   end
 
