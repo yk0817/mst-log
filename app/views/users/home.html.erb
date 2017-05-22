@@ -10,8 +10,13 @@
       </h1>
       <h5 class="home-text ta-center">マストログなら複数インスタンスのトゥートをまとめられます</h5>
       <div class="login-box ta-center">
+        <%= link_to(new_user_registration_path,:class => "login-link fw-bold") do %>
+          <i class="fa fa-envelope-o fa-2">新規登録(推奨)</i>
+        <% end %>
+      </div>
+      <div class="login-box ta-center">
         <%= link_to('/auth/twitter',:class => "login-link fw-bold") do %>
-          <i class="fa fa-twitter fa-2">ログイン</i>
+          <i class="fa fa-twitter fa-2">ログイン(非推奨)</i>
         <% end %>
       </div>
     </section>
