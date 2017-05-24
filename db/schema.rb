@@ -10,23 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170522130431) do
+ActiveRecord::Schema.define(version: 20170519021015) do
 
   create_table "crawl_states", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
     t.integer "user_id"
     t.string "instance"
     t.integer "crawl_status", default: 0, null: false
-    t.integer "update_crawl_status", default: 0, null: false
-    t.string "instance_user_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "instance_user_name"
+    t.integer "update_crawl_status", default: 0
     t.integer "other_instance_num"
   end
 
   create_table "toots", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
-    t.string "toot_id"
+    t.bigint "toot_id"
     t.integer "user_id"
-    t.integer "crawl_instance_id"
     t.string "toot_display_name"
     t.string "toot_username"
     t.text "toot_text"
@@ -36,15 +35,16 @@ ActiveRecord::Schema.define(version: 20170522130431) do
     t.datetime "toot_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "crawl_instance_id"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
-    t.string "tweet_nickname", default: ""
+    t.string "tweet_nickname"
     t.integer "tweet_user_id"
-    t.string "tweet_screen_name", default: ""
+    t.string "tweet_screen_name"
     t.string "tweet_background_image"
-    t.string "tweet_normal_image", default: ""
-    t.string "tweet_small_image", default: ""
+    t.string "tweet_normal_image"
+    t.string "tweet_small_image"
     t.string "tweet_place"
     t.integer "tweet_followed_count"
     t.integer "tweet_following_count"
