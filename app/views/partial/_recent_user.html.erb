@@ -1,4 +1,7 @@
 <div class="recent-user-name">
-  <%= recent_user.crawl_states.first.instance_user_name %>
+  <%= link_to(user_path(recent_user["id"])) do %>
+    <%= recent_user["instance"] %>
+    <%= recent_user["instance_user_name"] %>
+  <% end %>
 </div>
 

@@ -16,7 +16,7 @@ class UsersController < ApplicationController
       @date_counts = Toot.new.toot_week_count(params[:id].to_i)
       @toot_counts = Toot.where(:user_id => params[:id]).count
     end
-    @recent_users = User.order('created_at DESC').limit(5)
+    @recent_users = ActiveRecord::Base.connection.select_all("SELECT * FROM crawl_states LIMIT 8;")
   end
   
   def edit
