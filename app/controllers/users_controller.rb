@@ -54,7 +54,7 @@ class UsersController < ApplicationController
     if !session[:user_id].nil? 
       @user = User.find(params[:id]) 
     elsif !current_user.nil?
-      @user = current_user
+      @user = current_user 
     else
       redirect_to(home_path, :notice => 'ログインして下さい。')
     end

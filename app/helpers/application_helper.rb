@@ -13,11 +13,18 @@ module ApplicationHelper
     return link_to("#{link_url.gsub(/https?:\/\//,"")}",link_url)
   end
   
-  def instance_link(user,instance_name)
-    if CrawlState.where(:user_id => user.id, :instance => instance_name).exists?  
+  def instance_link(user_id,instance_name)
+    if CrawlState.where(:user_id => user_id, :instance => instance_name).exists? 
+      user = User.find(user_id)
       instance_count = user.crawl_states.where(:instance => instance_name).count 
       account = user.crawl_states.find_by(:instance => instance_name)
       link_to_if(instance_count >= 1 ,image_tag("#{account.instance.to_s}.png",:class=> "instance-icon"),"https://#{account.instance}/@#{account.instance_user_name}",:class => "#{instance_name}-link")    
+    end
+  end
+  
+  def other_instance_link(user_id,instance_name)
+    if CrawlState.where(:user_id => user_id, :instance => instance_name).exists? 
+      
     end
   end
   

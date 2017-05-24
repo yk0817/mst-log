@@ -1,9 +1,8 @@
 <div class="user-prof column--heavy">
   <div class="prof-instance-link">
-    <%= instance_link(@user,"mstdn.jp") %>
-    <%= "test" %>
-    <%= instance_link(@user,"friends.nico")%>
-    <%= instance_link(@user,"pawoo.net")%>
+    <%= instance_link(params[:id],"mstdn.jp") %>
+    <%= instance_link(params[:id],"friends.nico")%>
+    <%= instance_link(params[:id],"pawoo.net")%>
   </div>
     <ul class="tweet-user">
     </ul>
