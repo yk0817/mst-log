@@ -1,5 +1,5 @@
 <div class="recent-user-name">
-  <%= link_to(user_path(recent_user["id"])) do %>
+  <%= link_to(user_path(recent_user["user_id"],:class => "user-link")) do %>
     <%= recent_user["instance"] %>
     <%= recent_user["instance_user_name"] %>
   <% end %>
