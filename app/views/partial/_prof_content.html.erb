@@ -1,19 +1,10 @@
 <div class="user-prof column--heavy">
-  <%= image_tag(@user.tweet_normal_image,:class => "user-prof-image") %>
-  <div class="user-name instance-link">
-    <%= link_to("https://twitter.com/#{@user.tweet_screen_name}") do %>
-      <strong><%= @user.tweet_nickname %></strong>
-      <strong><%= "@#{@user.tweet_screen_name}" %></strong>
-    <% end %>
-      <p class="toot-count"><strong><%= @toot_counts %>トゥート</strong></p>
-  </div>
   <div class="prof-instance-link">
     <%= instance_link(@user,"mstdn.jp") %>
+    <%= "test" %>
     <%= instance_link(@user,"friends.nico")%>
     <%= instance_link(@user,"pawoo.net")%>
   </div>
     <ul class="tweet-user">
-      <li class="self-intro"><%= @user.tweet_self_introduce %></li>
-      <li class="self-link" ><%= link_to_if(@user.website_url,@user.website_url) %></li>
     </ul>
 </div>

@@ -1,5 +1,4 @@
 <div class="recent-user-name">
-  <%= image_tag(recent_user.tweet_small_image,:class=>"user-photo") %>
-  <%= link_to(recent_user.tweet_nickname,user_path(recent_user.id),:class=>"user-link") %>
+  <%= recent_user.crawl_states.first.instance_user_name %>
 </div>
 
