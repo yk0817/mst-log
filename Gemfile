@@ -54,6 +54,12 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
+group :development do
+  gem "faker"
+  gem "database_cleaner"
+  gem "launchy"
+end
+
 gem 'kaminari'
 gem 'cutestrap'
 gem 'omniauth'
