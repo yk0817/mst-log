@@ -9,6 +9,20 @@
       <span class="display-calendar"><%= time_parse(toot.toot_date) %></span>
     </div>
     <%= toot.toot_text.html_safe %>
-    <%= link_display(toot.toot_link_text)%>
   </div>
+</div>
+<% unless toot.toot_link_text.nil? %>
+  <%= raw toot.toot_link_text %>
+<% end %>
+
+
+<div class="status__attachments__inner">
+<div class="media-item">
+<a style="background-image: url(https://img.pawoo.net/media_attachments/files/001/038/874/original/5757456aa927a7a5.jpg)" target="_blank" rel="noopener" class="u-photo" href="https://img.pawoo.net/media_attachments/files/001/038/874/original/5757456aa927a7a5.jpg"></a>
+</div>
+
+<div class="media-item">
+<a style="background-image: url(https://img.pawoo.net/media_attachments/files/001/038/876/original/220c95b6262d1862.jpg)" target="_blank" rel="noopener" class="u-photo" href="https://img.pawoo.net/media_attachments/files/001/038/876/original/220c95b6262d1862.jpg"></a>
+</div>
+
 </div>
