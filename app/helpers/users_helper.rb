@@ -18,4 +18,9 @@ module UsersHelper
     end
   end
   
+  def toot_count_sort_instance(instance,user_id)
+    Toot.where(:toot_instance => instance,:user_id => user_id).count  
+  end
+  
+  
 end

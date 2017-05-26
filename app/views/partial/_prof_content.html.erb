@@ -1,8 +1,11 @@
 <div class="user-prof column--heavy">
   <div class="prof-instance-link">
-    <%= instance_link(params[:id],"mstdn.jp") %>
-    <%= instance_link(params[:id],"friends.nico")%>
-    <%= instance_link(params[:id],"pawoo.net")%>
+    <% CrawlState.where(:user_id => params[:id]).each do |account_info| %>
+      <%= instance_link(params[:id],account_info.instance ) %>
+      <%= account_info.instance %>
+      <%= account_info.instance_user_name %>
+      <%= toot_count_sort_instance(account_info.instance,account_info.user_id) %>
+    <% end %>
   </div>
     <ul class="tweet-user">
     </ul>

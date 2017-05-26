@@ -10,8 +10,6 @@ EOS
     ActiveRecord::Base.connection.select_all(sql).to_hash
   end
   
-  def toot_count_sort_instance(instance,user_id)
-    Toot.where(:instance => instance,:user_id => user_id).count  
-  end
+
 
 end
