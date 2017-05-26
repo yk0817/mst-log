@@ -13,6 +13,16 @@ describe  do
     account_params = {"mstdn.jp" => "test_user_name","user_id" => 1}
     expect(CrawlState.hash_for_save_instance("mstdn.jp",account_params)).to eq hash
   end
+  
+  it "test_other_major_instance" do
+    hash = {}
+    hash[:instance] = "mangadon.net"
+    hash[:user_id] = 20
+    hash[:other_instance_num] = "1"
+    hash[:instance_user_name] = "kenyama"
+    account_params = {"user_id" => 20,"other_instance1_domain" => "mangadon.net","other_instance1" => "kenyama"}
+    expect(CrawlState.hash_for_save_instance("other_instance1",account_params)).to eq hash
+  end
 end
 
 
