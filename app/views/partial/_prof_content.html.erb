@@ -1,12 +1,16 @@
 <div class="user-prof column--heavy">
-  <div class="prof-instance-link">
-    <% CrawlState.where(:user_id => params[:id]).each do |account_info| %>
-      <%= instance_link(params[:id],account_info.instance ) %>
-      <%= account_info.instance %>
-      <%= account_info.instance_user_name %>
-      <%= toot_count_sort_instance(account_info.instance,account_info.user_id) %>
-    <% end %>
-  </div>
+  <% CrawlState.where(:user_id => params[:id]).each do |account_info| %>
+    <div class="prof-instance-link">
+      <div class="instance-detail-content grid">
+        <%= instance_link(params[:id],account_info.instance ) %>
+        <div class = "fs-large instance-name"><span><%= account_info.instance %></span></div>
+        <div class = "fs-large instance-user-name"><span><%= account_info.instance_user_name %></span></div>
+        <div class = "fs-large instance-post-num"><span>投稿数</span>
+          <%= toot_count_sort_instance(account_info.instance,account_info.user_id) %>
+        </div>
+      </div>
+    </div>
+  <% end %>
     <ul class="tweet-user">
     </ul>
 </div>
