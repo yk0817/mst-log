@@ -37,9 +37,18 @@ body {
           .prof-instance-link {
             text-align: center;
             display: inline-block;
-            width: 70%;
+            width: 80%;
             .instance-name,.instance-user-name,.instance-post-num{
               line-height: 2;
+              a{
+                float: left;
+              }
+              span{
+                float: left;
+              }
+              .instance-user-account {
+                display: inline-block;
+              }
             }
             .instance-icon {
               display: inline-block;
