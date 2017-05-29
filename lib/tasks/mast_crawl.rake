@@ -8,7 +8,6 @@ namespace :mast do
         url = "https://#{instance.instance}/@#{instance.instance_user_name}"
         instance.crawl_status = 1 # crawling...
         instance.save 
-
         begin
           while TRUE
             nokogiri_parse = crawl.crawl(url)
@@ -146,7 +145,8 @@ namespace :mast do
   
   task :other_crawl => :environment do
     CrawlState.where.not(:instance => ["mstdn.jp","friends.nico","pawoo.net"]).find_each(:batch_size => 1) do |instance|
-      MastCrawl.new.crawl_db_insert("#{instance}")
+      p instance
+      MastCrawl.new.crawl_db_insert("#{instance.instance}")
     end
   end  
   # 更新用DBクローリング  
@@ -162,9 +162,9 @@ namespace :mast do
     MastCrawl.new.crawl_db_update("pawoo.net")
   end
   
-  task :other_crawl => :environment do
+  task :other_update_crawl => :environment do
     CrawlState.where.not(:instance => ["mstdn.jp","friends.nico","pawoo.net"]).find_each(:batch_size => 1) do |instance|
-      MastCrawl.new.crawl_db_update("#{instance}")
+      MastCrawl.new.crawl_db_update("#{instance.instance}")
     end
   end  
   
