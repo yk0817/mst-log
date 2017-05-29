@@ -14,11 +14,16 @@ module ApplicationHelper
   end
   
   def instance_link(user_id,instance_name)
-    if CrawlState.where(:user_id => user_id, :instance => instance_name).exists? 
+    if CrawlState.where(:user_id => user_id, :instance => instance_name).exists? && instance_name.match(//)
       user = User.find(user_id)
       instance_count = user.crawl_states.where(:instance => instance_name).count 
       account = user.crawl_states.find_by(:instance => instance_name)
       link_to_if(instance_count >= 1 ,image_tag("#{account.instance.to_s}.png",:class=> "instance-icon",:id =>"instance-id"),"https://#{account.instance}/@#{account.instance_user_name}",:class => "#{instance_name}-link")    
+    else
+      user = User.find(user_id)
+      instance_count = user.crawl_states.where(:instance => instance_name).count 
+      account = user.crawl_states.find_by(:instance => instance_name)
+      link_to_if(instance_count >= 1 ,image_tag("other_instance.png",:class=> "instance-icon",:id =>"instance-id"),"https://#{account.instance}/@#{account.instance_user_name}",:class => "other-instance-link")
     end
   end
   
