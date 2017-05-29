@@ -29,14 +29,17 @@ set :environment, rails_env
 
 set :output, 'log/crontab.log'
 
-every 1.hour do
+every '*/30 * * * *' do
   rake 'mast:mastdn_crawl'
 end
-every 1.hour do
+every '*/30 * * * *' do
   rake 'mast:nico_crawl'
 end
-every 1.hour do
+every '*/30 * * * *' do
   rake 'mast:pawoo_crawl'
+end
+every '*/30 * * * *' do
+  rake 'mast:other_crawl'
 end
 
 every 1.hour do
@@ -47,6 +50,9 @@ every 1.hour do
 end
 every 1.hour do
   rake 'mast:pawoo_update_crawl'
+end
+every 1.hour do
+  rake 'mast:other_update_crawl'
 end
 every 2.hour do
   rake 'mast:reset_update_flag'

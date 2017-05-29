@@ -112,7 +112,6 @@ namespace :mast do
       hash = {}
       hash[:toot_id] = parse.css(".status__meta > .u-uid")[0].attributes["href"].value.match(/.+\/(\d+)$/).captures[0]
       hash[:toot_username] = parse.css(".display-name > span").text
-      hash[:toot_display_name] = parse.css(".display-name > strong").text
       hash[:toot_reblogged] = 1 if parse.at(".fa-retweet") #ブーストは1ブーストじゃない→0
       hash[:toot_display_name] = parse.css(".display-name").to_html
       hash[:toot_link_text] = parse.css(".status__attachments__inner").to_html if parse.at(".status__attachments__inner")
