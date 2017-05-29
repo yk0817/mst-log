@@ -18,6 +18,14 @@ module UsersHelper
     end
   end
   
+  def image_instance(toot)
+    if toot.toot_instance.match(/^mstdn\.jp$|^pawoo\.net$|^friends\.nico$/)
+      image_tag("#{toot.toot_instance}.png",:class => "instance-image")
+    else
+      image_tag("other_instance.png",:class => "instance-image")
+    end
+  end
+  
   def toot_count_sort_instance(instance,user_id)
     Toot.where(:toot_instance => instance,:user_id => user_id).count  
   end
