@@ -20,4 +20,17 @@
   .example-picture {
     margin-bottom: 25px;
   }
+  // ユーザープロフ用レスポンシブCSS 
+  .user-prof {
+    height: 100px;
+  }
+  .instance-detail-content{
+    img#instance-id {
+      width: 50px;
+    }
+    figure{
+      height: 60px;
+    }
+  }
 }
+
