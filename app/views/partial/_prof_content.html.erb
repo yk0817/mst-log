@@ -1,8 +1,8 @@
-<div class="user-prof column--heavy">
+<div class="user-prof column--heavy" id="user-prof">
   <% CrawlState.where(:user_id => params[:id]).each do |account_info| %>
-    <div class="prof-instance-link">
+    <div class="prof-instance-link" id="prof-instance-link">
       <div class="instance-detail-content">
-        <figure>
+        <figure id="instance-figure">
           <%= instance_link(params[:id],account_info.instance ) %>
           <figcaption>
             <p><%= account_info.instance %></p>

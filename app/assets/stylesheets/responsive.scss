@@ -24,12 +24,26 @@
   .user-prof {
     height: 100px;
   }
-  .instance-detail-content{
-    img#instance-id {
-      width: 50px;
-    }
-    figure{
-      height: 60px;
+  #user-prof {
+    height: 100px;
+    #prof-instance-link{
+      width: 15%;
+      margin-right: 8px;
+      .instance-detail-content{
+        img#instance-id {
+          width: 50px;
+        }
+        #instance-figure{
+          height: 50px;
+          background-color: none;
+          img#instance-id {
+            width: 30px;
+          }
+          figcaption{
+            display: none;
+          }
+        }
+      }
     }
   }
 }
