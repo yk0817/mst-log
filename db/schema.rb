@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170519021015) do
+ActiveRecord::Schema.define(version: 20170529060513) do
 
   create_table "crawl_states", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
     t.integer "user_id"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20170519021015) do
     t.string "instance_user_name"
     t.integer "update_crawl_status", default: 0
     t.integer "other_instance_num"
+    t.integer "picture_danger_flag"
   end
 
   create_table "toots", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
