@@ -28,6 +28,8 @@ body {
           margin-left: 0px;
           margin-top: 1em;
           padding-top: 20px;
+          padding-left: 2rem;
+          height: 250px;
           @include base-border-radius;
           .user-prof-image {
             width: 100px;
@@ -37,17 +39,34 @@ body {
           .prof-instance-link {
             text-align: center;
             display: inline-block;
-            width: 80%;
-            .instance-name,.instance-user-name,.instance-post-num{
-              line-height: 2;
-              a{
+            width: 20%;
+            margin-right: 20px;
+            margin-top: 1rem;
+            .instance-detail-content {
+              border-radius: 5px;
+              figure {
+                background-color: #fff;
+                width: 100%;
                 float: left;
+                border-radius: 5px;
+                height: 180px;
+                padding-bottom: 0px;
+                padding-top: 0.3rem;
+                a {
+                  margin: 0px;
+                  img {
+                    width: 70px;
+                  }
+                }
+                p {
+                  padding: 0px;
+                }
               }
-              span{
-                float: left;
-              }
+              .instance-name{
+                line-height: 2.5;
               .instance-user-account {
                 display: inline-block;
+              }
               }
             }
             .instance-icon {
