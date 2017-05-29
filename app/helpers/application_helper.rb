@@ -14,7 +14,7 @@ module ApplicationHelper
   end
   
   def instance_link(user_id,instance_name)
-    if CrawlState.where(:user_id => user_id, :instance => instance_name).exists? && instance_name.match(//)
+    if CrawlState.where(:user_id => user_id, :instance => instance_name).exists? && instance_name.match(/^mstdn\.jp$|^pawoo\.net$|^friends\.nico$/)
       user = User.find(user_id)
       instance_count = user.crawl_states.where(:instance => instance_name).count 
       account = user.crawl_states.find_by(:instance => instance_name)
