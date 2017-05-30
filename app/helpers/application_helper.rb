@@ -27,12 +27,6 @@ module ApplicationHelper
     end
   end
   
-  def other_instance_link(user_id,instance_name)
-    if CrawlState.where(:user_id => user_id, :instance => instance_name).exists? 
-      
-    end
-  end
-  
   def saved_toots?(id)
     Toot.where(:user_id => id).exists? && User.where(:id => id).exists?
   end
