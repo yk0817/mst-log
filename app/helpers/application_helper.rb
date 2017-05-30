@@ -30,6 +30,10 @@ module ApplicationHelper
   def saved_toots?(id)
     Toot.where(:user_id => id).exists? && User.where(:id => id).exists?
   end
+  
+  def help
+    :available
+  end
 
 end
 
