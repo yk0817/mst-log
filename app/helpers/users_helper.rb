@@ -11,6 +11,16 @@ module UsersHelper
   def have_instance_account?(instance,current_user)
     if CrawlState.where(:instance => instance ,:user_id => current_user.id).exists?
       CrawlState.find_by(:instance => instance,:user_id => current_user.id).instance_user_name
+    elsif CrawlState.where(:other_instance_num => instance.gsub(/other_instance/,"") ,:user_id => current_user.id).exists?
+      CrawlState.find_by(:other_instance_num => instance.gsub(/other_instance/,""),:user_id => current_user.id).instance_user_name
+    else
+      ""
+    end
+  end
+  
+  def other_instance_name(instance,current_user)
+    if CrawlState.where(:other_instance_num => instance.gsub(/other_instance/,"") ,:user_id => current_user.id).exists?
+      CrawlState.find_by(:other_instance_num => instance.gsub(/other_instance/,""),:user_id => current_user.id).instance
     else
       ""
     end
