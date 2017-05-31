@@ -66,7 +66,7 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "mst-log_#{Rails.env}"
   config.action_mailer.perform_caching = false
   
-  config.action_mailer.default_url_options = { host: 'v150-95-140-130.a085.g.tyo1.static.cnode.io', port: 3000 }
+  config.action_mailer.default_url_options = { host: 'www.mst-log.net'}
   config.action_mailer.delivery_method = :smtp
 
   # config.action_mailer.raise_delivery_errors = true
