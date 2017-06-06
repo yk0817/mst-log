@@ -6,6 +6,7 @@ namespace :mast do
       CrawlState.where(:crawl_status => 0,:instance => instance_name).find_each(:batch_size => 1) do |instance|
         crawl = MastCrawl.new
         url = "https://#{instance.instance}/@#{instance.instance_user_name}"
+        p url
         instance.crawl_status = 1 # crawling...
         instance.save 
         begin
@@ -13,7 +14,7 @@ namespace :mast do
             nokogiri_parse = crawl.crawl(url)
             sleep(1)
             crawl.db_insert(nokogiri_parse,instance.user_id,instance.id,instance.instance)
-            next_url = crawl.next_page?(nokogiri_parse)
+            next_url = crawl.next_page?(nokogiri_parse,instance.instance)
             unless next_url
               instance.crawl_status = 3 # status 3 finish
               instance.save
@@ -56,7 +57,7 @@ namespace :mast do
             end
             
             toot_scraped_unix_time = toot_unix_time_array.min
-            next_url = crawl.next_page?(nokogiri_parse)
+            next_url = crawl.next_page?(nokogiri_parse,instance.instance)
             
             if toot_min_date.to_i > toot_scraped_unix_time.to_i
               instance.update_crawl_status = 3 # status 3 finish
@@ -85,9 +86,12 @@ namespace :mast do
     end
     
     
-    def next_page?(nokogiri_parse)
-      next_url = nokogiri_parse.css(".next")[0]["href"]  if nokogiri_parse.at(".next")
+    def next_page?(nokogiri_parse,instance)
+      next_url = nokogiri_parse.css(".next")[0]["href"]  if nokogiri_parse.at(".next")  &&  nokogiri_parse.css(".next")[0]["href"].match(/^https:\/\//)
+      # p nokogiri_parse.css(".next")[0]["href"]
+      next_url = "https://#{instance}#{nokogiri_parse.css(".next")[0]["href"]}"  if nokogiri_parse.at(".next") &&  nokogiri_parse.css(".next")[0]["href"].match(/^\/@.+/)
       next_url = false unless nokogiri_parse.at(".next")
+      p next_url
       next_url
     end
     
@@ -144,7 +148,7 @@ namespace :mast do
   
   task :other_crawl => :environment do
     CrawlState.where.not(:instance => ["mstdn.jp","friends.nico","pawoo.net"]).find_each(:batch_size => 1) do |instance|
-      p instance
+      # p instance
       MastCrawl.new.crawl_db_insert("#{instance.instance}")
     end
   end  
