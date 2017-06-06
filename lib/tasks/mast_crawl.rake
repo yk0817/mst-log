@@ -6,7 +6,6 @@ namespace :mast do
       CrawlState.where(:crawl_status => 0,:instance => instance_name).find_each(:batch_size => 1) do |instance|
         crawl = MastCrawl.new
         url = "https://#{instance.instance}/@#{instance.instance_user_name}"
-        p url
         instance.crawl_status = 1 # crawling...
         instance.save 
         begin
@@ -91,7 +90,6 @@ namespace :mast do
       # p nokogiri_parse.css(".next")[0]["href"]
       next_url = "https://#{instance}#{nokogiri_parse.css(".next")[0]["href"]}"  if nokogiri_parse.at(".next") &&  nokogiri_parse.css(".next")[0]["href"].match(/^\/@.+/)
       next_url = false unless nokogiri_parse.at(".next")
-      p next_url
       next_url
     end
     
