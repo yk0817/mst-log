@@ -117,7 +117,13 @@ namespace :mast do
       hash[:toot_reblogged] = 1 if parse.at(".fa-retweet") #ブーストは1ブーストじゃない→0
       hash[:toot_display_name] = parse.css(".display-name").to_html
       hash[:toot_link_text] = parse.css(".status__attachments__inner").to_html if parse.at(".status__attachments__inner")
-      hash[:toot_date] =  Time.parse(parse.css("time")[0].attributes["datetime"].value) #データとして保存用
+      if parse.at("time")
+        hash[:toot_date] = Time.parse(parse.css("time")[0].attributes["datetime"].value) 
+      else
+        # https://mstdn.hokkaido.jp/@FIWA 対応
+        p Time.parse(parse.css("data")[0].attributes["value"].value)
+        hash[:toot_date] = Time.parse(parse.css("data")[0].attributes["value"].value)
+      end
       hash[:toot_text] = parse.css("div.e-content").to_html #テキスト本文 面倒なんでタグごとぶっこむ
       hash[:user_id] = hash_for_db[:user_id]
       hash[:crawl_instance_id] = hash_for_db[:crawl_instance_id]
