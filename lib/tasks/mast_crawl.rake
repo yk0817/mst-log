@@ -121,7 +121,6 @@ namespace :mast do
         hash[:toot_date] = Time.parse(parse.css("time")[0].attributes["datetime"].value) 
       else
         # https://mstdn.hokkaido.jp/@FIWA 対応
-        p Time.parse(parse.css("data")[0].attributes["value"].value)
         hash[:toot_date] = Time.parse(parse.css("data")[0].attributes["value"].value)
       end
       hash[:toot_text] = parse.css("div.e-content").to_html #テキスト本文 面倒なんでタグごとぶっこむ
